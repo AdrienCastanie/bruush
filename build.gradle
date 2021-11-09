@@ -1,7 +1,18 @@
+buildscript {
+    repositories {
+        gradlePluginPortal()
+    }
+
+    dependencies {
+        classpath 'com.bmuschko:gradle-tomcat-plugin:2.7.0'
+    }
+}
+
 plugins {
     id 'java'
     id 'war'
 }
+apply plugin: 'com.bmuschko.tomcat'
 
 group 'fr.bruush'
 version '1.0-SNAPSHOT'
@@ -28,8 +39,18 @@ dependencies {
 
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+
+    def tomcatVersion = '9.0.54'
+    tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
+            "org.apache.tomcat.embed:tomcat-embed-logging-juli:9.0.0.M6",
+            "org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}"
 }
 
 test {
     useJUnitPlatform()
+}
+
+tomcat {
+    httpProtocol = 'org.apache.coyote.http11.Http11Nio2Protocol'
+    ajpProtocol = 'org.apache.coyote.http11.Http11Nio2Protocol'
 }
