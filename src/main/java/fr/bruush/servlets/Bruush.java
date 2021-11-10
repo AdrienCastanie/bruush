@@ -13,7 +13,7 @@ import fr.bruush.beans.Client;
 import fr.bruush.beans.DAOClient;
 import fr.bruush.beans.DAOFactory;
 
-@WebServlet("/")
+@WebServlet("/bruush")
 public class Bruush extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -85,6 +85,6 @@ public class Bruush extends HttpServlet {
 //				request.setAttribute("content", "welcome");
 				break;
 		}
-		request.getRequestDispatcher("/jsp/site/template.jsp").forward(request,response);
+		request.getRequestDispatcher("/index.jsp").forward(request,response);
 	}
 }

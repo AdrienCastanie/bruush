@@ -50,7 +50,7 @@ public class DAOFactory {
 	public DAOClient getDAOClient(String type) {
 		switch(type) {
 			case "MariaDB":
-				setParamMariaDB("jdbc:mysql://localhost:3306/BRUUSH", "root", "bruush");
+				setParamMariaDB("jdbc:mysql://127.0.0.1:3306/BRUUSH", "root", "bruush");
 				return new DAOClientMariaDB(this);
 			case "JPA":
 				setParamJPA();
