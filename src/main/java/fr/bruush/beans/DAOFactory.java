@@ -4,9 +4,13 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+
 public class DAOFactory {
 	
 	private static volatile DAOFactory instance = null;
+	private EntityManagerFactory emf;
 	private String url;
 	private String username;
 	private String password;
@@ -39,11 +43,18 @@ public class DAOFactory {
 		} 	
 	}
 	
-	public DAOBook getDAOBook(String type) {
+	private void setParamJPA() {
+		emf = Persistence.createEntityManagerFactory("Book");
+	}
+	
+	public DAOClient getDAOClient(String type) {
 		switch(type) {
 			case "MariaDB":
-				setParamMariaDB("jdbc:mysql://localhost:3306/library", "root", "MySQL2021");
-				return new DAOBookMariaDB(this);
+				setParamMariaDB("jdbc:mysql://localhost:3306/BRUUSH", "root", "bruush");
+				return new DAOClientMariaDB(this);
+			case "JPA":
+				setParamJPA();
+				return new DAOClientJPA(emf);
 			default:
 				return null;	
 		}
