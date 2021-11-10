@@ -1,0 +1,21 @@
+body {
+    background-image: url("../images/wallpaper.jpg");
+}
+
+.site-name {
+    text-align: center;
+    font-size: 5em;
+    margin-top: 6vh;
+}
+
+.form-rectangle {
+    outline: solid black 3px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f2f8ff;
+}
+
+.form-connexion {
+    width: 40vw;
+    height: 50vh;
+}
