@@ -2,7 +2,7 @@
     <h1>BRUUSH</h1>
     <div class="header-user-container">
         <!--
-        <a href="connexion" class="header-clickable-connection header-clickable-item">
+        <a href="connection" class="header-clickable-connection header-clickable-item">
             <label class="user-name-label">Se connecter</label>
             <img src="img/avatar.png">
         </a>
