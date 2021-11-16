@@ -1,8 +1,11 @@
-package fr.bruush.beans;
+package fr.bruush.beans.dao;
+
+import fr.bruush.beans.objects.Client;
+import fr.bruush.exceptions.ClientNotFoundException;
 
 import java.util.List;
 
-public interface DAOClient {
+public interface DAOBruush {
 	
     public abstract void add(String nom, String prenom, String mail, String addr, int bloque);
 	
@@ -13,5 +16,7 @@ public interface DAOClient {
     public void update(int id, String nom, String prenom, String mail, String addr, int bloque);
 
     public abstract void delete(int id);
+
+    public abstract Client getClientByMailAndMdp(String mail, String mdp);
 
 }

@@ -1,15 +1,18 @@
-package fr.bruush.beans;
+package fr.bruush.beans.dao;
+
+import fr.bruush.beans.objects.Client;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 
-public class DAOClientJPA implements DAOClient {
+public class DAOBruushJPA implements DAOBruush {
 	
 	private EntityManagerFactory emf;
 	
-	public DAOClientJPA(EntityManagerFactory emf) {
+	public DAOBruushJPA(EntityManagerFactory emf) {
 		this.emf = emf;
 	}
 
@@ -77,6 +80,22 @@ public class DAOClientJPA implements DAOClient {
 		}
 		finally {
 		  entityManager.close();
+		}
+	}
+
+	@Override
+	public Client getClientByMailAndMdp(String mail, String mdp) {
+		EntityManager entityManager = emf.createEntityManager();
+		entityManager.getTransaction().begin();
+		try {
+			Query q = entityManager.createNativeQuery(
+					"SELECT * FROM CLIENT WHERE mail = :mail AND mdp = :mdp",
+					Client.class);
+			q.setParameter("mail", mail);
+			q.setParameter("mdp", mdp);
+			return (Client)q.getSingleResult();
+		} finally {
+			entityManager.close();
 		}
 	}
 }

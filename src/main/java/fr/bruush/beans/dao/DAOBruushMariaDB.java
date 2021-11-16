@@ -1,4 +1,6 @@
-package fr.bruush.beans;
+package fr.bruush.beans.dao;
+import fr.bruush.beans.objects.Client;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,11 +9,11 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DAOClientMariaDB implements DAOClient {
+public class DAOBruushMariaDB implements DAOBruush {
 	
 	private DAOFactory daoFactory;
 
-	DAOClientMariaDB(DAOFactory daoFactory) {
+	DAOBruushMariaDB(DAOFactory daoFactory) {
 	    this.daoFactory = daoFactory;
 	}
 
@@ -102,5 +104,10 @@ public class DAOClientMariaDB implements DAOClient {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		
+	}
+
+	@Override
+	public Client getClientByMailAndMdp(String mail, String mdp) {
+		return null;
 	}
 }

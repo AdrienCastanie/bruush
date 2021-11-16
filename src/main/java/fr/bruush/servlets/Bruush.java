@@ -1,7 +1,6 @@
 package fr.bruush.servlets;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,19 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fr.bruush.beans.Client;
-import fr.bruush.beans.DAOClient;
-import fr.bruush.beans.DAOFactory;
+import fr.bruush.beans.dao.DAOBruush;
+import fr.bruush.beans.dao.DAOFactory;
+import fr.bruush.beans.objects.Client;
 
-@WebServlet("/")
+@WebServlet("/action")
 public class Bruush extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private DAOClient daoClient;
+	private DAOBruush daoBruush;
 	
 	public void init() throws ServletException {
         DAOFactory daoFactory = DAOFactory.getInstance();
-        daoClient = daoFactory.getDAOClient("JPA");
+        daoBruush = daoFactory.getDAOClient("JPA");
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -32,15 +31,21 @@ public class Bruush extends HttpServlet {
 	}
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println(request.getRequestURI());
 		String id = request.getParameter("id");
-		String code;
 		if(id == null) {
 			id = "welcome";
 		}
 		switch(id) {
-			case "welcome":
-//				request.setAttribute("content", "welcome");
+			case "connexion":
+				String email = request.getParameter("email");
+				String mdp = request.getParameter("mdp");
+				Client c = this.daoBruush.getClientByMailAndMdp(email, mdp);
+				if (c == null) {
+					// Le client n'existe pas
+					break;
+				}
+				System.out.println(c.getId());
+				request.setAttribute("content", "welcome");
 				break;
 			case "display":
 //				List<Book> catalog = dao.getBooks();
