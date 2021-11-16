@@ -9,7 +9,7 @@
         -->
         <a href="profile" class="header-clickable-connection header-clickable-item">
             <label class="user-name-label">Quentin PINEAU</label>
-            <img src="img/avatar.png">
+            <img src="/bruush/img/avatar.png">
         </a>
 
         <a href="/bruush/jsp/cart.jsp">
