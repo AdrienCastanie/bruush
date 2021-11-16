@@ -37,6 +37,11 @@ h1 {
     font-weight: 100;
 }
 
+h2 {
+    font-size: clamp(30px, 6vw, 50px);
+    font-weight: 100;
+}
+
 .header-user-container {
     position: absolute;
     right: 0;
@@ -55,6 +60,10 @@ h1 {
 .header-clickable-item:hover {
     background: #0ED4FF;
     cursor: pointer;
+}
+
+.article-title {
+    font-size: clamp(30px, 5vw, 40px);
 }
 
 .main-container {

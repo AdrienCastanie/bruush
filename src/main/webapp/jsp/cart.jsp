@@ -8,7 +8,17 @@
 <body>
 <jsp:include page="header.jsp"/>
 <div class="main-container">
-    <div class="center-container article-container">
+    <div class="center-container cart-container">
+        <h2>Panier</h2>
+        <div class="cart-article-container">
+            <img src="/bruush/img/article1.jpg">
+            <label class="article-title">Chiotte 3000</label>
+            <div class="right-info-cart-article">
+                <label class="cart-article-price">200€</label>
+                <label class="subtotal-label">Sous total : 200€</label>
+            </div>
+        </div>
+        <span></span>
     </div>
 </div>
 </body>
