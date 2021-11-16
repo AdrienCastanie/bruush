@@ -1,0 +1,51 @@
+body {
+    background-image: url("../images/wallpaper.jpg");
+}
+
+.site-name {
+    text-align: center;
+    font-size: 5em;
+    margin-top: 6vh;
+}
+
+.form-rectangle {
+    outline: solid black 3px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #f2f8ff;
+    padding-bottom: 2vh;
+    padding-top: 2vh;
+}
+
+.form-connexion {
+    width: 30vw;
+    min-width: 400px;
+}
+
+.form-input {
+    width: 100%;
+    line-height: 5vh;
+}
+
+.form-input-wrapper {
+    text-align: center;
+    width: 80%;
+    margin: auto;
+}
+
+.form-label {
+    padding-left: 10%;
+}
+
+.form-submit-button {
+    border-radius: 40px;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    line-height: 5vh;
+    width: 30%;
+    background-color: #46C8FF;
+}
+
+.link-wrapper {
+    text-align: center;
+}
