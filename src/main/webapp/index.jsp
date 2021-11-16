@@ -8,9 +8,10 @@
 </head>
 <body>
 <jsp:include page="jsp/header.jsp"/>
+<script type="text/javascript" src="js/quantity.js"></script>
 <div class="main-container">
     <div class="center-container article-container">
-        <img src="img/article1.jpg">
+        <img class="article-img" src="img/article1.jpg">
         <div class="title-description-container">
             <label class="article-title">Chiotte 3000</label>
             <p>
@@ -22,12 +23,12 @@
         <div class="right-article-container">
             <div class="price-stock-container">
                 <label class="article-price">200€</label>
-                <label class="article-stock">Stock : 35</label>
+                <label id="stock" class="article-stock">Stock : 35</label>
             </div>
             <div class="qty-article-container">
-                <input type="button" value="-" class="minus">
+                <input type="button" value="-" class="button-stock" onclick="decrementValue()">
                 <div id="qty-article" class="qty-article-selected">1</div>
-                <input type="button" value="+" class="plus">
+                <input type="button" value="+" class="button-stock"  onclick="incrementValue()">
             </div>
             <button class="stripe">Acheter</button>
         </div>
