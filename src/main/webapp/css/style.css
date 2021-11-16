@@ -37,6 +37,11 @@ h1 {
     font-weight: 100;
 }
 
+h2 {
+    font-size: clamp(30px, 6vw, 50px);
+    font-weight: 100;
+}
+
 .header-user-container {
     position: absolute;
     right: 0;
@@ -55,4 +60,25 @@ h1 {
 .header-clickable-item:hover {
     background: #0ED4FF;
     cursor: pointer;
+}
+
+.article-title {
+    font-size: clamp(30px, 5vw, 40px);
+}
+
+.main-container {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.center-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 70vw;
+    max-width: 1000px;
+    padding-bottom: 40px;
+    justify-content: space-between;
 }
