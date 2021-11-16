@@ -24,6 +24,11 @@
                 <label class="article-price">200€</label>
                 <label class="article-stock">Stock : 35</label>
             </div>
+            <div class="qty-article-container">
+                <input type="button" value="-" class="minus">
+                <div id="qty-article" class="qty-article-selected">1</div>
+                <input type="button" value="+" class="plus">
+            </div>
             <button class="stripe">Acheter</button>
         </div>
     </div>
