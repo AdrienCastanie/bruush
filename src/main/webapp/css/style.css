@@ -1,0 +1,58 @@
+@font-face {
+    font-family: "Roboto Thin";
+    src: url("/font/Roboto-Thin.ttf") format("ttf");
+}
+
+html {
+    background: #f2f8ff;
+}
+
+body {
+    font-family: "Roboto Thin", sans-serif;
+    margin: 0;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+header img {
+    height: 30px;
+    padding: 8px;
+}
+
+header span {
+    border-bottom: 2px solid #c8c8c8;
+    width: 80vw;
+}
+
+h1 {
+    margin: 0;
+    font-size: clamp(40px, 8vw, 80px);
+    font-weight: 100;
+}
+
+.header-user-container {
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    padding: 5px;
+}
+
+.user-name-label {
+    margin-right: 20px;
+}
+
+.header-clickable-item:hover {
+    background: #0ED4FF;
+    cursor: pointer;
+}
