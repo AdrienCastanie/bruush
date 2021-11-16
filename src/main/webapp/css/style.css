@@ -37,6 +37,11 @@ h1 {
     font-weight: 100;
 }
 
+h2 {
+    font-size: clamp(30px, 6vw, 50px);
+    font-weight: 100;
+}
+
 .header-user-container {
     position: absolute;
     right: 0;
@@ -50,9 +55,66 @@ h1 {
 
 .user-name-label {
     margin-right: 20px;
+    line-height: 100%;
 }
 
 .header-clickable-item:hover {
     background: #0ED4FF;
     cursor: pointer;
+    color: white;
+}
+
+.header-clickable-connection {
+    display: flex;
+    align-items: center;
+}
+
+header a {
+    text-decoration: none;
+    color: black;
+}
+
+.article-title {
+    font-size: clamp(30px, 5vw, 40px);
+}
+
+.main-container {
+    width: 100%;
+    margin-top: 50px;
+}
+
+.center-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    width: 70vw;
+    max-width: 1000px;
+    padding-bottom: 40px;
+    justify-content: space-between;
+}
+
+.qty-article-container {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.qty-article-selected {
+    width: 20%;
+    border: 1px solid lightgrey;
+    text-align: center;
+}
+
+.button-stock {
+    background-color: #0ED4FF;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+
+.button-stock:hover {
+    background-color: #0077ff;
 }
