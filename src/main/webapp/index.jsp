@@ -8,8 +8,8 @@
 </head>
 <body>
 <jsp:include page="jsp/header.jsp"/>
-<div id="main-container">
-    <div class="article-container">
+<div class="main-container">
+    <div class="center-container article-container">
         <img src="img/article1.jpg">
         <div class="title-description-container">
             <label class="article-title">Chiotte 3000</label>
