@@ -19,6 +19,13 @@
             </div>
         </div>
         <span></span>
+
+        <div class="bottom-cart-container">
+            <div class="bottom-cart">
+                <label class="total-label">Total : 400€</label>
+                <button class="stripe">Acheter</button>
+            </div>
+        </div>
     </div>
 </div>
 </body>
