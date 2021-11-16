@@ -50,9 +50,21 @@ h1 {
 
 .user-name-label {
     margin-right: 20px;
+    line-height: 100%;
 }
 
 .header-clickable-item:hover {
     background: #0ED4FF;
     cursor: pointer;
+    color: white;
+}
+
+.header-clickable-connection {
+    display: flex;
+    align-items: center;
+}
+
+header a {
+    text-decoration: none;
+    color: black;
 }

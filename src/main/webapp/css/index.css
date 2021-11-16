@@ -79,3 +79,20 @@ button:hover {
     transform: translateY(-8px);
     transition-duration: 400ms;
 }
+
+.article-img {
+    border: 2px solid #c8c8c8;
+}
+
+.qty-article-container {
+    margin-top: 2rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.qty-article-selected {
+    width: 20%;
+    border: 1px solid lightgrey;
+    text-align: center;
+}

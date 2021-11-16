@@ -10,7 +10,7 @@
 <jsp:include page="jsp/header.jsp"/>
 <div id="main-container">
     <div class="article-container">
-        <img src="img/article1.jpg">
+        <img class="article-img" src="img/article1.jpg">
         <div class="title-description-container">
             <label class="article-title">Chiotte 3000</label>
             <p>
@@ -23,6 +23,11 @@
             <div class="price-stock-container">
                 <label class="article-price">200€</label>
                 <label class="article-stock">Stock : 35</label>
+            </div>
+            <div class="qty-article-container">
+                <input type="button" value="-" class="minus">
+                <div id="qty-article" class="qty-article-selected">1</div>
+                <input type="button" value="+" class="plus">
             </div>
             <button class="stripe">Acheter</button>
         </div>
