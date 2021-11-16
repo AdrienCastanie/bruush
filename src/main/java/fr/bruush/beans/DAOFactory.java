@@ -44,7 +44,7 @@ public class DAOFactory {
 	}
 	
 	private void setParamJPA() {
-		emf = Persistence.createEntityManagerFactory("Book");
+		emf = Persistence.createEntityManagerFactory("Client");
 	}
 	
 	public DAOClient getDAOClient(String type) {

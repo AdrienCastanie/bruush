@@ -13,7 +13,7 @@ import fr.bruush.beans.Client;
 import fr.bruush.beans.DAOClient;
 import fr.bruush.beans.DAOFactory;
 
-@WebServlet("/bruush")
+@WebServlet("/")
 public class Bruush extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -32,6 +32,7 @@ public class Bruush extends HttpServlet {
 	}
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println(request.getRequestURI());
 		String id = request.getParameter("id");
 		String code;
 		if(id == null) {
