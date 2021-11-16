@@ -10,7 +10,7 @@
     <h1 class="site-name">BRUUSH</h1>
     <div class="form-rectangle form-connexion">
         <h2 style="text-align: center;">Connexion</h2>
-        <form action="" method="post" class="form-example">
+        <form action="/bruush/action?id=connexion" method="post" class="form-example">
             <p class="form-label">Adresse email :</p>
             <div class="form-input-wrapper">
                 <input class="form-input" type="email" name="email" placeholder="Email" required>

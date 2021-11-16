@@ -1,4 +1,4 @@
-package fr.bruush.beans;
+package fr.bruush.beans.objects;
 
 import java.io.Serializable;
 
@@ -14,7 +14,7 @@ import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="clients")
+@Table(name="CLIENT")
 public class Client implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -38,6 +38,9 @@ public class Client implements Serializable {
 
 	@Column(name="bloque")
 	private int bloque;
+
+	@Column(name="mdp")
+	private String mdp;
 	
 	public Client() {}
 	
@@ -100,5 +103,13 @@ public class Client implements Serializable {
 
 	public void setBloque(int bloque) {
 		this.bloque = bloque;
+	}
+
+	public String getMdp() {
+		return mdp;
+	}
+
+	public void setMdp(String mdr) {
+		this.mdp = mdp;
 	}
 }

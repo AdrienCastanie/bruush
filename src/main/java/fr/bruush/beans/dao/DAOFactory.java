@@ -1,4 +1,4 @@
-package fr.bruush.beans;
+package fr.bruush.beans.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -44,17 +44,17 @@ public class DAOFactory {
 	}
 	
 	private void setParamJPA() {
-		emf = Persistence.createEntityManagerFactory("Book");
+		emf = Persistence.createEntityManagerFactory("Bruush");
 	}
 	
-	public DAOClient getDAOClient(String type) {
+	public DAOBruush getDAOClient(String type) {
 		switch(type) {
 			case "MariaDB":
 				setParamMariaDB("jdbc:mysql://127.0.0.1:3306/BRUUSH", "root", "bruush");
-				return new DAOClientMariaDB(this);
+				return new DAOBruushMariaDB(this);
 			case "JPA":
 				setParamJPA();
-				return new DAOClientJPA(emf);
+				return new DAOBruushJPA(emf);
 			default:
 				return null;	
 		}
