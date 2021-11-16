@@ -15,6 +15,16 @@
                 <img src="img/avatar.png">
             </a>
         </c:if>
+        <!--
+        <a href="connexion" class="header-clickable-connection header-clickable-item">
+            <label class="user-name-label">Se connecter</label>
+            <img src="img/avatar.png">
+        </a>
+        -->
+        <a href="/bruush/jsp/profile-user-informations.jsp" class="header-clickable-connection header-clickable-item">
+            <label class="user-name-label">Quentin PINEAU</label>
+            <img src="/bruush/img/avatar.png">
+        </a>
 
         <a href="/bruush/jsp/cart.jsp">
             <div class="header-clickable-item">

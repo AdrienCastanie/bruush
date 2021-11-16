@@ -1,0 +1,10 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(10, 1fr);
+    grid-template: "nav-bar container container container container container container container container container";
+}
+
+.profile-container {
+    grid-area: container;
+}
