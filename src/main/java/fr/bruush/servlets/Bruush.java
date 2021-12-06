@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.bruush.beans.dao.DAOBruush;
 import fr.bruush.beans.dao.DAOFactory;
@@ -44,7 +45,10 @@ public class Bruush extends HttpServlet {
 					// Le client n'existe pas
 					break;
 				}
-				System.out.println(c.getId());
+				HttpSession session = request.getSession();
+				session.setAttribute("nom", c.getNom());
+				session.setAttribute("prenom", c.getPrenom());
+				session.setAttribute("id", c.getId());
 				request.setAttribute("content", "welcome");
 				break;
 			case "display":
