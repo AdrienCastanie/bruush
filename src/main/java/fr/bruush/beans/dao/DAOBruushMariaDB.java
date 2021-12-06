@@ -1,4 +1,5 @@
 package fr.bruush.beans.dao;
+import fr.bruush.beans.objects.Article;
 import fr.bruush.beans.objects.Client;
 
 import java.sql.Connection;
@@ -109,5 +110,26 @@ public class DAOBruushMariaDB implements DAOBruush {
 	@Override
 	public Client getClientByMailAndMdp(String mail, String mdp) {
 		return null;
+	}
+
+	@Override
+	public List<Article> getArticles() {
+		List<Article> articles = new ArrayList<>();
+		try (Connection connexion = daoFactory.getConnection();
+			 Statement statement = connexion.createStatement();
+			 ResultSet result = statement.executeQuery("SELECT * FROM ARTICLE;")) {
+			while (result.next()) {
+				int id = result.getInt("id");
+				String nom = result.getString("nom");
+				int prix = result.getInt("prix");
+				int stock = result.getInt("stock");
+				String description = result.getString("description");
+				String img = result.getString("img");
+				articles.add(new Article(id, nom, prix, stock, description, img));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return articles;
 	}
 }

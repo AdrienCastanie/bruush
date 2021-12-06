@@ -1,6 +1,7 @@
 package fr.bruush.servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import fr.bruush.beans.dao.DAOBruush;
 import fr.bruush.beans.dao.DAOFactory;
+import fr.bruush.beans.objects.Article;
 import fr.bruush.beans.objects.Client;
 
 @WebServlet("/action")
@@ -34,8 +36,10 @@ public class Bruush extends HttpServlet {
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		if(id == null) {
-			id = "welcome";
+			id = "index";
 		}
+		System.out.println("Bruush servlet: " + id);
+		List<Article> articles = this.daoBruush.getArticles();
 		switch(id) {
 			case "connexion":
 				String email = request.getParameter("email");
@@ -92,7 +96,8 @@ public class Bruush extends HttpServlet {
 //				request.getRequestDispatcher("bibliotheque?id=display").forward(request,response);
 				break;
 			default:
-//				request.setAttribute("content", "welcome");
+				System.out.println(articles.size());
+				request.setAttribute("articles", articles);
 				break;
 		}
 		request.getRequestDispatcher("/index.jsp").forward(request,response);
