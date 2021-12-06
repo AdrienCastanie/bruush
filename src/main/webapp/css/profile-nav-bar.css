@@ -29,12 +29,13 @@ h2 {
     width: 100%;
     text-align: center;
     cursor: pointer;
-}
-
-.menu-item-actif {
-    background-color: #979797;
+    text-decoration: none;
 }
 
 .menu-item:hover {
+    background-color: #979797;
+}
+
+.menu-item-actif {
     background-color: #979797;
 }
