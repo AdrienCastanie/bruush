@@ -73,10 +73,10 @@ public class Bruush extends HttpServlet {
 				session.setAttribute("id", client.getId());
 				request.setAttribute("content", "welcome");
 				break;
-			case "display":
-//				List<Book> catalog = dao.getBooks();
-//				request.setAttribute("catalog", catalog);
-//				request.setAttribute("content", "display");
+			case "disconnection":
+                session = request.getSession();
+                if(session != null)
+                    session.invalidate();
 				break;
 			case "add":
 //				String bookAdded = request.getParameter("bookadded");
