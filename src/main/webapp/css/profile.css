@@ -8,3 +8,47 @@ body {
 .profile-container {
     grid-area: container;
 }
+
+.personnal-info-input-container {
+    color: black;
+}
+
+.personnal-info-input-container {
+    margin-left: 30px;
+}
+
+.input-label {
+    display: inline-block;
+    width: 100px;
+    margin-bottom: 15px;
+}
+
+input {
+    width: 30vw;
+    max-width: 400px;
+    border: solid 1px #0ED4FF;
+}
+
+input:focus {
+    outline: none;
+    border: solid 1px #0077ff;
+}
+
+.stripe {
+    margin-top: 20px;
+    margin-left: 30px;
+    font-size: 15px;
+    padding: 5px 15px 5px 15px;
+    border-radius: 40px;
+    border: 2px solid #0ED4FF;
+    background: #0ED4FF;
+    box-shadow: 0px 15px 20px rgba(14, 212, 255, 0.4);
+    color: white;
+}
+
+button:hover {
+    border: 2px solid #0077ff;
+    background: #0077ff;
+    box-shadow: 0px 15px 20px rgba(0, 119, 255, 0.4);
+    transition-duration: 400ms;
+}
