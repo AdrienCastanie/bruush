@@ -1,4 +1,4 @@
 package fr.bruush.exceptions;
 
-public class ClientNotFoundException {
+public class ClientNotFoundException extends Exception {
 }

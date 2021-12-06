@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import fr.bruush.beans.dao.DAOBruush;
 import fr.bruush.beans.dao.DAOFactory;
 import fr.bruush.beans.objects.Client;
+import fr.bruush.exceptions.ClientCreationException;
 
 @WebServlet("/action")
 public class Bruush extends HttpServlet {
@@ -56,22 +57,25 @@ public class Bruush extends HttpServlet {
 				session.setAttribute("prenom", client.getPrenom());
 				session.setAttribute("id", client.getId());
 				request.setAttribute("content", "welcome");
+				request.getRequestDispatcher("/index.jsp").forward(request,response);
 				break;
 			case "create_account":
 				nom = request.getParameter("nom");
 				prenom = request.getParameter("prenom");
 				mail = request.getParameter("mail");
 				mdp = request.getParameter("mdp");
-				client = this.daoBruush.createClient(nom, prenom, mail, mdp);
-				if (client == null) {
-					// Le client n'existe pas
+				try {
+					client = this.daoBruush.createClient(nom, prenom, mail, mdp);
+				} catch (ClientCreationException e) {
+					request.setAttribute("error", e);
+					request.getRequestDispatcher("/create_account.jsp").forward(request,response);
 					break;
 				}
 				session = request.getSession();
 				session.setAttribute("nom", client.getNom());
 				session.setAttribute("prenom", client.getPrenom());
 				session.setAttribute("id", client.getId());
-				request.setAttribute("content", "welcome");
+				request.getRequestDispatcher("/index.jsp").forward(request,response);
 				break;
 			case "display":
 //				List<Book> catalog = dao.getBooks();
@@ -117,6 +121,5 @@ public class Bruush extends HttpServlet {
 //				request.setAttribute("content", "welcome");
 				break;
 		}
-		request.getRequestDispatcher("/index.jsp").forward(request,response);
 	}
 }

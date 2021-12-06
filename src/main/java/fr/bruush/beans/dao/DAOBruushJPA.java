@@ -1,12 +1,15 @@
 package fr.bruush.beans.dao;
 
 import fr.bruush.beans.objects.Client;
+import fr.bruush.exceptions.ClientCreationException;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 public class DAOBruushJPA implements DAOBruush {
 	
@@ -99,14 +102,20 @@ public class DAOBruushJPA implements DAOBruush {
 		}
 	}
 
+	@Transactional
 	@Override
-	public Client createClient(String nom, String prenom, String mail, String mdp) {
+	public Client createClient(String nom, String prenom, String mail, String mdp) throws ClientCreationException {
 		EntityManager entityManager = emf.createEntityManager();
-		entityManager.getTransaction().begin();
+		EntityTransaction transaction = entityManager.getTransaction();
 		try {
 			Client c = new Client(nom, prenom, mail, mdp);
+			transaction.begin();
 			entityManager.persist(c);
+			transaction.commit();
 			return c;
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new ClientCreationException(e.getMessage());
 		} finally {
 			entityManager.close();
 		}

@@ -9,7 +9,7 @@ CREATE TABLE CLIENT (
  id_client integer NOT NULL AUTO_INCREMENT ,
  nom       varchar(50) NOT NULL ,
  prenom    varchar(50) NOT NULL ,
- mail      varchar(50) NOT NULL ,
+ mail      varchar(50) NOT NULL UNIQUE,
  mdp       varchar(50) NOT NULL ,
  addr      varchar(100) NULL DEFAULT NULL,
  bloque    integer(1) DEFAULT 0 ,
