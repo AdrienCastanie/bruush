@@ -23,7 +23,7 @@
 
             <p class="form-label">Adresse email :</p>
             <div class="form-input-wrapper">
-                <input class="form-input" type="email" name="email" placeholder="Email" required>
+                <input class="form-input" type="email" name="mail" placeholder="Email" required>
             </div>
 
             <p class="form-label">Mot de passe :</p>

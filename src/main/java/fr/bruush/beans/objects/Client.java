@@ -45,10 +45,8 @@ public class Client implements Serializable {
 	public Client() {}
 
 	public Client(String nom, String prenom, String mail, String mdp) {
-		this.nom = nom;
-		this.prenom = prenom;
-		this.mail = mail;
-		this.addr = mdp;
+		this(nom, prenom, mail, null, 0);
+		this.mdp = mdp;
 	}
 
 	public Client(String nom, String prenom, String mail, String addr, int bloque) {
