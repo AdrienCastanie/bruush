@@ -65,7 +65,7 @@ h3 {
 }
 
 .header-clickable-item:hover {
-    background: #0ED4FF;
+    background: #0077ff;
     cursor: pointer;
     color: white;
 }
@@ -123,4 +123,35 @@ header a {
 
 .button-stock:hover {
     background-color: #0077ff;
+}
+
+.my-account-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    width: 100%;
+    position: absolute;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    background: white;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    cursor: pointer;
+}
+
+.dropdown-content a:hover {
+    background-color: #0077ff;
+    color: white;
+}
+
+.my-account-dropdown:hover .dropdown-content {
+    display: block;
 }
