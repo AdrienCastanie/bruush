@@ -36,19 +36,41 @@ public class Bruush extends HttpServlet {
 		if(id == null) {
 			id = "welcome";
 		}
+		String nom;
+		String prenom;
+		String mail;
+		String mdp;
+		Client client;
+		HttpSession session;
 		switch(id) {
 			case "connexion":
-				String email = request.getParameter("email");
-				String mdp = request.getParameter("mdp");
-				Client c = this.daoBruush.getClientByMailAndMdp(email, mdp);
-				if (c == null) {
+				mail = request.getParameter("email");
+				mdp = request.getParameter("mdp");
+				client = this.daoBruush.getClientByMailAndMdp(mail, mdp);
+				if (client == null) {
 					// Le client n'existe pas
 					break;
 				}
-				HttpSession session = request.getSession();
-				session.setAttribute("nom", c.getNom());
-				session.setAttribute("prenom", c.getPrenom());
-				session.setAttribute("id", c.getId());
+				session = request.getSession();
+				session.setAttribute("nom", client.getNom());
+				session.setAttribute("prenom", client.getPrenom());
+				session.setAttribute("id", client.getId());
+				request.setAttribute("content", "welcome");
+				break;
+			case "create_account":
+				nom = request.getParameter("nom");
+				prenom = request.getParameter("prenom");
+				mail = request.getParameter("mail");
+				mdp = request.getParameter("mdp");
+				client = this.daoBruush.createClient(nom, prenom, mail, mdp);
+				if (client == null) {
+					// Le client n'existe pas
+					break;
+				}
+				session = request.getSession();
+				session.setAttribute("nom", client.getNom());
+				session.setAttribute("prenom", client.getPrenom());
+				session.setAttribute("id", client.getId());
 				request.setAttribute("content", "welcome");
 				break;
 			case "display":
