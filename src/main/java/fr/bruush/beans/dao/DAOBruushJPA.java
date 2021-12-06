@@ -98,4 +98,17 @@ public class DAOBruushJPA implements DAOBruush {
 			entityManager.close();
 		}
 	}
+
+	@Override
+	public Client createClient(String nom, String prenom, String mail, String mdp) {
+		EntityManager entityManager = emf.createEntityManager();
+		entityManager.getTransaction().begin();
+		try {
+			Client c = new Client(nom, prenom, mail, mdp);
+			entityManager.persist(c);
+			return c;
+		} finally {
+			entityManager.close();
+		}
+	}
 }

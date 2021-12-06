@@ -4,13 +4,23 @@
 <head>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
     <link rel="stylesheet" type="text/css" href="../css/connexion.css">
-    <title>Page de connexion</title>
+    <title>Page de création de compte</title>
 </head>
 <body>
     <h1 class="site-name">BRUUSH</h1>
     <div class="form-rectangle form-connexion">
-        <h2 style="text-align: center;">Connexion</h2>
-        <form action="/bruush/action?id=connexion" method="post" class="form-example">
+        <h2 style="text-align: center;">Création de compte</h2>
+        <form action="/bruush/action?id=create_account" method="post" class="form-example">
+            <p class="form-label">Nom :</p>
+            <div class="form-input-wrapper">
+                <input class="form-input" type="text" name="nom" placeholder="Nom" required>
+            </div>
+
+            <p class="form-label">Prénom :</p>
+            <div class="form-input-wrapper">
+                <input class="form-input" type="text" name="prenom" placeholder="Prenom" required>
+            </div>
+
             <p class="form-label">Adresse email :</p>
             <div class="form-input-wrapper">
                 <input class="form-input" type="email" name="email" placeholder="Email" required>
@@ -22,11 +32,11 @@
             </div>
 
             <div style="text-align: center;">
-                <input class="form-submit-button" type="submit" value="Se connecter">
+                <input class="form-submit-button" type="submit" value="Créer son compte">
             </div>
         </form>
         <div class="link-wrapper">
-            <a href="create_account.jsp">Créer un compte</a>
+            <a href="connexion.jsp">Déjà un compte</a>
         </div>
     </div>
 </body>

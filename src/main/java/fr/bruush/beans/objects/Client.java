@@ -21,29 +21,36 @@ public class Client implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) 
-	@Column(name="id_client")
+	@Column(name="id_client", columnDefinition = "integer")
 	private int id;
 	
-	@Column(name="nom")
+	@Column(name="nom", columnDefinition = "varchar(50)")
 	private String nom;
 	
-	@Column(name="prenom")
+	@Column(name="prenom", columnDefinition = "varchar(50)")
 	private String prenom;
 	
-	@Column(name="mail")
+	@Column(name="mail", columnDefinition = "varchar(50)")
 	private String mail;
 
-	@Column(name="addr")
+	@Column(name="mdp", columnDefinition = "varchar(50)")
+	private String mdp;
+
+	@Column(name="addr", columnDefinition = "varchar(100) default null")
 	private String addr;
 
-	@Column(name="bloque")
+	@Column(name="bloque", columnDefinition = "integer(1) default 0")
 	private int bloque;
-
-	@Column(name="mdp")
-	private String mdp;
 	
 	public Client() {}
-	
+
+	public Client(String nom, String prenom, String mail, String mdp) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.mail = mail;
+		this.addr = mdp;
+	}
+
 	public Client(String nom, String prenom, String mail, String addr, int bloque) {
 		this.nom = nom;
 		this.prenom = prenom;

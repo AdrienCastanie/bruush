@@ -110,4 +110,9 @@ public class DAOBruushMariaDB implements DAOBruush {
 	public Client getClientByMailAndMdp(String mail, String mdp) {
 		return null;
 	}
+
+	@Override
+	public Client createClient(String nom, String prenom, String mail, String mdp) {
+		return null;
+	}
 }
