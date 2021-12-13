@@ -37,6 +37,7 @@ public class Bruush extends HttpServlet {
 	
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
+		System.out.println(id);
 		if(id == null) {
 			id = "index";
 		}
@@ -97,19 +98,7 @@ public class Bruush extends HttpServlet {
 
 				break;
 			case "cart":
-//				String bookAdded = request.getParameter("bookadded");
-//				if(bookAdded != null) {
-//					if(bookAdded.equals("true")) {
-//			        	String title = request.getParameter("title");
-//			        	String author = request.getParameter("author");
-//			        	String description = request.getParameter("description");
-//						daoBook.add(title, author, description);
-//					}
-//					else {
-//						request.getRequestDispatcher("bibliotheque?id=display").forward(request,response);
-//					}
-//				}
-//				request.setAttribute("content", "add");
+				request.getRequestDispatcher("/jsp/cart.jsp").forward(request,response);
 				break;
 			case "edit":
 //				code = request.getParameter("code");

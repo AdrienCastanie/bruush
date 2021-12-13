@@ -26,7 +26,7 @@
             <div class="header-clickable-item">
                 <img src="/bruush/img/panier.png">
             </div>
-            <form action="?action=cart" method="POST">
+            <form action="/bruush/action?id=cart" method="POST">
                 <input type="hidden" class="cart" name="cart">
             </form>
         </div>
