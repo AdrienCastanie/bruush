@@ -82,7 +82,7 @@ public class Bruush extends HttpServlet {
                 if(session != null)
                     session.invalidate();
 				break;
-			case "add":
+			case "cart":
 //				String bookAdded = request.getParameter("bookadded");
 //				if(bookAdded != null) {
 //					if(bookAdded.equals("true")) {

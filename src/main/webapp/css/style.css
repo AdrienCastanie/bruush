@@ -155,3 +155,7 @@ header a {
 .my-account-dropdown:hover .dropdown-content {
     display: block;
 }
+
+#cart {
+    visibility: hidden;
+}

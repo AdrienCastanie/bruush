@@ -22,11 +22,22 @@
             </a>
         </c:if>
 
-        <a href="/bruush/jsp/cart.jsp">
+        <div id="btnCart">
             <div class="header-clickable-item">
                 <img src="/bruush/img/panier.png">
             </div>
-        </a>
+            <form action="?action=cart" method="POST">
+                <input type="hidden" class="cart" name="cart">
+            </form>
+        </div>
+        <script>
+            const btnCart = document.querySelector("#btnCart");
+            btnCart.addEventListener('click', event => {
+                const form = btnCart.querySelector('form')
+                form.querySelector('.cart').value = localStorage.getItem('panier') || "{}"
+                form.submit()
+            })
+        </script>
     </div>
     <span></span>
 </header>
