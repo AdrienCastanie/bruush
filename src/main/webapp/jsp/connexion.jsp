@@ -26,7 +26,7 @@
             </div>
         </form>
         <div class="link-wrapper">
-            <a href="create_account">Créer un compte</a>
+            <a href="create_account.jsp">Créer un compte</a>
         </div>
     </div>
 </body>

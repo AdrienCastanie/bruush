@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 
 import fr.bruush.beans.dao.DAOBruush;
 import fr.bruush.beans.dao.DAOFactory;
-import fr.bruush.beans.objects.Article;
 import fr.bruush.beans.objects.Client;
+import fr.bruush.beans.objects.Article;
 
 @WebServlet("/action")
 public class Bruush extends HttpServlet {
@@ -39,26 +39,48 @@ public class Bruush extends HttpServlet {
 			id = "index";
 		}
 		System.out.println("Bruush servlet: " + id);
+		String nom;
+		String prenom;
+		String mail;
+		String mdp;
+		Client client;
+		HttpSession session;
 		List<Article> articles = this.daoBruush.getArticles();
 		switch(id) {
 			case "connexion":
-				String email = request.getParameter("email");
-				String mdp = request.getParameter("mdp");
-				Client c = this.daoBruush.getClientByMailAndMdp(email, mdp);
-				if (c == null) {
+				mail = request.getParameter("email");
+				mdp = request.getParameter("mdp");
+				client = this.daoBruush.getClientByMailAndMdp(mail, mdp);
+				if (client == null) {
 					// Le client n'existe pas
 					break;
 				}
-				HttpSession session = request.getSession();
-				session.setAttribute("nom", c.getNom());
-				session.setAttribute("prenom", c.getPrenom());
-				session.setAttribute("id", c.getId());
+				session = request.getSession();
+				session.setAttribute("nom", client.getNom());
+				session.setAttribute("prenom", client.getPrenom());
+				session.setAttribute("id", client.getId());
 				request.setAttribute("content", "welcome");
 				break;
-			case "display":
-//				List<Book> catalog = dao.getBooks();
-//				request.setAttribute("catalog", catalog);
-//				request.setAttribute("content", "display");
+			case "create_account":
+				nom = request.getParameter("nom");
+				prenom = request.getParameter("prenom");
+				mail = request.getParameter("mail");
+				mdp = request.getParameter("mdp");
+				client = this.daoBruush.createClient(nom, prenom, mail, mdp);
+				if (client == null) {
+					// Le client n'existe pas
+					break;
+				}
+				session = request.getSession();
+				session.setAttribute("nom", client.getNom());
+				session.setAttribute("prenom", client.getPrenom());
+				session.setAttribute("id", client.getId());
+				request.setAttribute("content", "welcome");
+				break;
+			case "disconnection":
+                session = request.getSession();
+                if(session != null)
+                    session.invalidate();
 				break;
 			case "add":
 //				String bookAdded = request.getParameter("bookadded");

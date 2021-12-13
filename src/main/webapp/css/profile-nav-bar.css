@@ -1,0 +1,41 @@
+.profile-nav-bar-container {
+    grid-area: nav-bar;
+    height: 100vh;
+    background-color: #C4C4C4;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-nav-bar-container span {
+    border-bottom: 2px solid black;
+    width: 80%;
+    margin-bottom: 30px;
+}
+
+h1 {
+    font-size: clamp(40px, 6vw, 60px);
+    font-weight: 100;
+}
+
+h2 {
+    font-size: clamp(15px, 4vw, 20px);
+    font-weight: 100;
+    color: white;
+}
+
+.menu-item {
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.menu-item:hover {
+    background-color: #979797;
+}
+
+.menu-item-actif {
+    background-color: #979797;
+}

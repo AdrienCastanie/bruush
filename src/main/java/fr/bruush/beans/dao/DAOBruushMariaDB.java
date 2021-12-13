@@ -113,6 +113,11 @@ public class DAOBruushMariaDB implements DAOBruush {
 	}
 
 	@Override
+	public Client createClient(String nom, String prenom, String mail, String mdp) {
+		return null;
+	}
+
+	@Override
 	public List<Article> getArticles() {
 		List<Article> articles = new ArrayList<>();
 		try (Connection connexion = daoFactory.getConnection();
