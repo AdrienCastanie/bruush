@@ -1,5 +1,6 @@
 package fr.bruush.beans.dao;
 
+import fr.bruush.beans.objects.Article;
 import fr.bruush.beans.objects.Client;
 import fr.bruush.exceptions.ClientNotFoundException;
 
@@ -20,5 +21,7 @@ public interface DAOBruush {
     public abstract Client getClientByMailAndMdp(String mail, String mdp);
 
     public abstract Client createClient(String nom, String prenom, String mail, String mdp);
+
+    public abstract List<Article> getArticles();
 
 }

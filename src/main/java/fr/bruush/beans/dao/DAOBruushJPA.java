@@ -1,5 +1,6 @@
 package fr.bruush.beans.dao;
 
+import fr.bruush.beans.objects.Article;
 import fr.bruush.beans.objects.Client;
 
 import java.util.List;
@@ -110,5 +111,19 @@ public class DAOBruushJPA implements DAOBruush {
 		} finally {
 			entityManager.close();
 		}
+	}
+
+	@Override
+	public List<Article> getArticles() {
+		List<Article> catalog;
+		EntityManager entityManager = emf.createEntityManager();
+		entityManager.getTransaction().begin();
+		try {
+			catalog = entityManager.createQuery("from Article", Article.class).getResultList();
+		}
+		finally {
+			entityManager.close();
+		}
+		return catalog;
 	}
 }

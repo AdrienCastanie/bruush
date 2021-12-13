@@ -164,3 +164,65 @@ VALUES
     (98,"Ava","Martinez","turpis.egestas@outlook.com","KEU77LXU6PW","4723 Euismod Rd.",0),
     (99,"Kyle","Roach","bibendum.donec@icloud.com","DMH60RNN4SJ","774-3017 Et St.",0),
     (100,"Cecilia","Mack","massa.non.ante@yahoo.edu","GEF81SSM2GA","634-7055 Suspendisse Road",0);
+
+INSERT INTO `ARTICLE` (`id_article`,`nom`,`prix`,`stock`,`description`,`img`)
+VALUES
+    (1,"Simple Explosif",32,853,"odio tristique pharetra. Quisque ac libero nec ligula consectetuer","https://i.touslesprix.com/ph_grp/300/4/2/2/9/1059224_0.jpg"),
+    (2,"Elegant Super",141,660,"non justo. Proin non massa non ante","https://i.touslesprix.com/ph_grp/300/4/2/2/9/1059224_0.jpg"),
+    (3,"9000 Balai",281,306,"diam. Proin dolor. Nulla semper tellus id nunc interdum","https://i.touslesprix.com/ph_grp/300/4/2/2/9/1059224_0.jpg"),
+    (4,"Explosif Elegant",264,317,"a, facilisis non, bibendum","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (5,"Chiotte 3000",37,706,"sociis natoque","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (6,"Brosse Simple",204,933,"Curabitur vel","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (7,"Chiotte 3000",197,404,"rutrum. Fusce dolor quam, elementum","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (8,"Elegant Super",165,761,"ipsum cursus vestibulum. Mauris magna. Duis","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (9,"Explosif Elegant",157,434,"eu elit. Nulla","https://sabatie-produits-entretien.fr/fr/wp-content/uploads/2017/03/06293-BROSSE-WC-339.jpg"),
+    (10,"9000 Balai",20,376,"Phasellus fermentum convallis ligula. Donec luctus aliquet odio. Etiam","https://www.cdiscount.com/pdt2/0/9/2/1/700x700/auc0739879174092/rw/balai-de-chiottes-a-manch-long-avec-support.jpg");
+INSERT INTO `ARTICLE` (`id_article`,`nom`,`prix`,`stock`,`description`,`img`)
+VALUES
+    (11,"3000 6000",231,279,"Sed diam lorem, auctor quis, tristique ac, eleifend vitae, erat.","https://sabatie-produits-entretien.fr/fr/wp-content/uploads/2017/03/06293-BROSSE-WC-339.jpg"),
+    (12,"6000 9000",51,234,"consequat dolor vitae dolor. Donec fringilla. Donec feugiat metus","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (13,"6000 9000",272,678,"dui. Cras pellentesque.","https://i.touslesprix.com/ph_grp/300/4/2/2/9/1059224_0.jpg"),
+    (14,"Explosif Elegant",238,617,"Donec at arcu.","https://sabatie-produits-entretien.fr/fr/wp-content/uploads/2017/03/06293-BROSSE-WC-339.jpg"),
+    (15,"3000 6000",141,280,"libero.","https://i.touslesprix.com/ph_grp/300/4/2/2/9/1059224_0.jpg"),
+    (16,"Explosif Elegant",82,70,"feugiat non, lobortis quis, pede. Suspendisse dui.","https://i.touslesprix.com/ph_grp/300/4/2/2/9/1059224_0.jpg"),
+    (17,"Balai Brosse",215,839,"dis parturient montes, nascetur ridiculus","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (18,"6000 9000",209,462,"massa lobortis ultrices. Vivamus rhoncus. Donec","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (19,"Elegant Super",203,676,"ultrices posuere cubilia Curae Donec tincidunt.","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (20,"6000 9000",185,343,"feugiat non, lobortis quis, pede. Suspendisse dui.","https://sabatie-produits-entretien.fr/fr/wp-content/uploads/2017/03/06293-BROSSE-WC-339.jpg");
+INSERT INTO `ARTICLE` (`id_article`,`nom`,`prix`,`stock`,`description`,`img`)
+VALUES
+    (21,"Brosse Simple",38,278,"Aenean massa. Integer vitae","https://i.touslesprix.com/ph_grp/300/4/2/2/9/1059224_0.jpg"),
+    (22,"Balai Brosse",16,967,"neque vitae semper egestas, urna justo faucibus","https://i.touslesprix.com/ph_grp/300/4/2/2/9/1059224_0.jpg"),
+    (23,"Super Incroyable",101,885,"et tristique pellentesque, tellus sem mollis","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (24,"Super Incroyable",137,719,"lorem tristique aliquet. Phasellus","https://www.cdiscount.com/pdt2/0/9/2/1/700x700/auc0739879174092/rw/balai-de-chiottes-a-manch-long-avec-support.jpg"),
+    (25,"3000 6000",63,110,"enim. Suspendisse aliquet, sem","https://i.touslesprix.com/ph_grp/300/4/2/2/9/1059224_0.jpg"),
+    (26,"Elegant Super",122,36,"Mauris vestibulum, neque sed dictum eleifend,","https://sabatie-produits-entretien.fr/fr/wp-content/uploads/2017/03/06293-BROSSE-WC-339.jpg"),
+    (27,"Brosse Simple",6,862,"ornare lectus justo eu arcu.","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (28,"Balai Brosse",49,375,"et","https://www.cdiscount.com/pdt2/0/9/2/1/700x700/auc0739879174092/rw/balai-de-chiottes-a-manch-long-avec-support.jpg"),
+    (29,"Simple Explosif",277,41,"vel lectus. Cum sociis natoque penatibus et","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (30,"3000 6000",294,834,"Mauris","https://i.touslesprix.com/ph_grp/300/4/2/2/9/1059224_0.jpg");
+INSERT INTO `ARTICLE` (`id_article`,`nom`,`prix`,`stock`,`description`,`img`)
+VALUES
+    (31,"Chiotte 3000",105,97,"urna convallis erat, eget tincidunt dui","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (32,"Elegant Super",156,361,"et, commodo at, libero. Morbi accumsan laoreet ipsum. Curabitur","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (33,"Simple Explosif",4,638,"urna et arcu imperdiet","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (34,"Balai Brosse",96,638,"eros. Proin ultrices. Duis volutpat","https://sabatie-produits-entretien.fr/fr/wp-content/uploads/2017/03/06293-BROSSE-WC-339.jpg"),
+    (35,"Explosif Elegant",157,625,"Curae Phasellus ornare. Fusce mollis. Duis sit amet diam","https://i.touslesprix.com/ph_grp/300/4/2/2/9/1059224_0.jpg"),
+    (36,"9000 Balai",19,437,"fermentum convallis ligula. Donec luctus aliquet odio.","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (37,"3000 6000",33,821,"arcu. Nunc mauris. Morbi non sapien","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (38,"Simple Explosif",250,540,"metus. In","https://www.cdiscount.com/pdt2/0/9/2/1/700x700/auc0739879174092/rw/balai-de-chiottes-a-manch-long-avec-support.jpg"),
+    (39,"9000 Balai",2,874,"ultrices","https://www.cdiscount.com/pdt2/0/9/2/1/700x700/auc0739879174092/rw/balai-de-chiottes-a-manch-long-avec-support.jpg"),
+    (40,"9000 Balai",129,481,"Lorem ipsum dolor sit","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg");
+INSERT INTO `ARTICLE` (`id_article`,`nom`,`prix`,`stock`,`description`,`img`)
+VALUES
+    (41,"Explosif Elegant",250,744,"eget mollis lectus pede et risus. Quisque","https://sabatie-produits-entretien.fr/fr/wp-content/uploads/2017/03/06293-BROSSE-WC-339.jpg"),
+    (42,"6000 9000",298,970,"lacinia mattis.","https://sabatie-produits-entretien.fr/fr/wp-content/uploads/2017/03/06293-BROSSE-WC-339.jpg"),
+    (43,"Elegant Super",161,184,"sapien imperdiet ornare. In faucibus. Morbi vehicula. Pellentesque tincidunt","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (44,"3000 6000",208,178,"ac arcu. Nunc mauris. Morbi non sapien","https://i.touslesprix.com/ph_grp/300/4/2/2/9/1059224_0.jpg"),
+    (45,"9000 Balai",135,968,"eget metus. In nec orci. Donec nibh.","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (46,"Chiotte 3000",41,354,"aliquam arcu. Aliquam ultrices iaculis","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (47,"Super Incroyable",106,597,"consequat enim diam vel","https://commentseruiner.com/22040-thickbox_default/la-brosse-balai-de-toilettes-micro.jpg"),
+    (48,"Simple Explosif",152,874,"dictum cursus. Nunc mauris elit, dictum eu, eleifend nec,","https://www.cdiscount.com/pdt2/0/9/2/1/700x700/auc0739879174092/rw/balai-de-chiottes-a-manch-long-avec-support.jpg"),
+    (49,"Brosse Simple",107,578,"metus sit amet ante. Vivamus","https://i.touslesprix.com/ph_grp/300/4/2/2/9/1059224_0.jpg"),
+    (50,"Explosif Elegant",245,108,"nec tempus","https://www.cdiscount.com/pdt2/0/9/2/1/700x700/auc0739879174092/rw/balai-de-chiottes-a-manch-long-avec-support.jpg");
+
