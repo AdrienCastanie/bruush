@@ -156,6 +156,11 @@ header a {
     display: block;
 }
 
+.decoration-none {
+    text-decoration: none;
+    color: black;
+}
+
 #cart {
     visibility: hidden;
 }

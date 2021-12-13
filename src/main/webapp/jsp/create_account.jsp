@@ -1,15 +1,19 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <link rel="stylesheet" type="text/css" href="../css/connexion.css">
+    <link rel="stylesheet" type="text/css" href="/bruush/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/bruush/css/connexion.css">
     <title>Page de création de compte</title>
 </head>
 <body>
     <h1 class="site-name">BRUUSH</h1>
     <div class="form-rectangle form-connexion">
         <h2 style="text-align: center;">Création de compte</h2>
+        <c:if test="${ !empty requestScope.error }">
+            <p class="bruush-form-error">L'adresse email est déjà utilisée.</p>
+        </c:if>
         <form action="/bruush/action?id=create_account" method="post" class="form-example">
             <p class="form-label">Nom :</p>
             <div class="form-input-wrapper">
@@ -36,7 +40,7 @@
             </div>
         </form>
         <div class="link-wrapper">
-            <a href="connexion.jsp">Déjà un compte</a>
+            <a href="/bruush/jsp/connexion.jsp">Déjà un compte</a>
         </div>
     </div>
 </body>

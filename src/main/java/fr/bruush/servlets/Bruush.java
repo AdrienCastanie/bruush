@@ -14,6 +14,8 @@ import fr.bruush.beans.dao.DAOBruush;
 import fr.bruush.beans.dao.DAOFactory;
 import fr.bruush.beans.objects.Client;
 import fr.bruush.beans.objects.Article;
+import fr.bruush.exceptions.ClientCreationException;
+import fr.bruush.exceptions.ClientNotFoundException;
 
 @WebServlet("/action")
 public class Bruush extends HttpServlet {
@@ -38,7 +40,6 @@ public class Bruush extends HttpServlet {
 		if(id == null) {
 			id = "index";
 		}
-		System.out.println("Bruush servlet: " + id);
 		String nom;
 		String prenom;
 		String mail;
@@ -50,7 +51,14 @@ public class Bruush extends HttpServlet {
 			case "connexion":
 				mail = request.getParameter("email");
 				mdp = request.getParameter("mdp");
-				client = this.daoBruush.getClientByMailAndMdp(mail, mdp);
+				try {
+					client = this.daoBruush.getClientByMailAndMdp(mail, mdp);
+				} catch (ClientNotFoundException e) {
+					request.setAttribute("error", e);
+					request.getRequestDispatcher("/jsp/connexion.jsp").forward(request,response);
+					break;
+				}
+
 				if (client == null) {
 					// Le client n'existe pas
 					break;
@@ -60,27 +68,33 @@ public class Bruush extends HttpServlet {
 				session.setAttribute("prenom", client.getPrenom());
 				session.setAttribute("id", client.getId());
 				request.setAttribute("content", "welcome");
+				request.getRequestDispatcher("/action?id=index").forward(request,response);
 				break;
 			case "create_account":
 				nom = request.getParameter("nom");
 				prenom = request.getParameter("prenom");
 				mail = request.getParameter("mail");
 				mdp = request.getParameter("mdp");
-				client = this.daoBruush.createClient(nom, prenom, mail, mdp);
-				if (client == null) {
-					// Le client n'existe pas
+				try {
+					client = this.daoBruush.createClient(nom, prenom, mail, mdp);
+				} catch (ClientCreationException e) {
+					request.setAttribute("error", e);
+					request.getRequestDispatcher("/jsp/create_account.jsp").forward(request,response);
 					break;
 				}
 				session = request.getSession();
 				session.setAttribute("nom", client.getNom());
 				session.setAttribute("prenom", client.getPrenom());
 				session.setAttribute("id", client.getId());
-				request.setAttribute("content", "welcome");
+				request.getRequestDispatcher("/action?id=index").forward(request,response);
+
 				break;
 			case "disconnection":
                 session = request.getSession();
                 if(session != null)
                     session.invalidate();
+				request.getRequestDispatcher("/action?id=index").forward(request,response);
+
 				break;
 			case "cart":
 //				String bookAdded = request.getParameter("bookadded");
@@ -117,11 +131,11 @@ public class Bruush extends HttpServlet {
 //				}
 //				request.getRequestDispatcher("bibliotheque?id=display").forward(request,response);
 				break;
+			case "index":
 			default:
-				System.out.println(articles.size());
 				request.setAttribute("articles", articles);
+                request.getRequestDispatcher("/index.jsp").forward(request,response);
 				break;
 		}
-		request.getRequestDispatcher("/index.jsp").forward(request,response);
 	}
 }
