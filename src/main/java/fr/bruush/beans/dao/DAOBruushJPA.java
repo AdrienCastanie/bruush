@@ -2,12 +2,16 @@ package fr.bruush.beans.dao;
 
 import fr.bruush.beans.objects.Article;
 import fr.bruush.beans.objects.Client;
+import fr.bruush.exceptions.ClientCreationException;
+import fr.bruush.exceptions.ClientNotFoundException;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 
 public class DAOBruushJPA implements DAOBruush {
 	
@@ -85,7 +89,7 @@ public class DAOBruushJPA implements DAOBruush {
 	}
 
 	@Override
-	public Client getClientByMailAndMdp(String mail, String mdp) {
+	public Client getClientByMailAndMdp(String mail, String mdp) throws ClientNotFoundException {
 		EntityManager entityManager = emf.createEntityManager();
 		entityManager.getTransaction().begin();
 		try {
@@ -95,19 +99,27 @@ public class DAOBruushJPA implements DAOBruush {
 			q.setParameter("mail", mail);
 			q.setParameter("mdp", mdp);
 			return (Client)q.getSingleResult();
+		} catch (Exception e) {
+			throw new ClientNotFoundException(e.getMessage());
 		} finally {
 			entityManager.close();
 		}
 	}
 
+	@Transactional
 	@Override
-	public Client createClient(String nom, String prenom, String mail, String mdp) {
+	public Client createClient(String nom, String prenom, String mail, String mdp) throws ClientCreationException {
 		EntityManager entityManager = emf.createEntityManager();
-		entityManager.getTransaction().begin();
+		EntityTransaction transaction = entityManager.getTransaction();
 		try {
 			Client c = new Client(nom, prenom, mail, mdp);
+			transaction.begin();
 			entityManager.persist(c);
+			transaction.commit();
 			return c;
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new ClientCreationException(e.getMessage());
 		} finally {
 			entityManager.close();
 		}
