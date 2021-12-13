@@ -22,16 +22,22 @@
             <tr>
                 <th>Nom</th>
                 <th>Prénom</th>
-                <th>Bloqu</th>
-                <th>Dernière modification</th>
+                <th>Email</th>
+                <th>Bloquer</th>
             </tr>
             </thead>
             <tbody>
             <tr>
-                <td>S5</td>
-                <td>Ma première note</td>
-                <td>09/09/2021</td>
-                <td>10/09/2021</td>
+                <td>Pineau</td>
+                <td>Quentin</td>
+                <td>test@test.fr</td>
+                <td>Non</td>
+                <td>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </td>
             </tr>
             <tbody>
         </table>
