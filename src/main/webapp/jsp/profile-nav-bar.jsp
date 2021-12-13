@@ -1,6 +1,9 @@
 <link rel="stylesheet" href="/bruush/css/profile-nav-bar.css">
 <div class="profile-nav-bar-container">
-    <h1>BRUUSH</h1>
+    <a class="decoration-none"
+       href="/bruush/index.jsp">
+        <h1>BRUUSH</h1>
+    </a>
     <span></span>
     <a id="menu-item-personal-info"
        class="menu-item"
