@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/bruush/css/profile-nav-bar.css">
 <div class="profile-nav-bar-container">
     <a class="decoration-none"
-       href="/bruush/index.jsp">
+       href="/bruush/action?id=index">
         <h1>BRUUSH</h1>
     </a>
     <span></span>

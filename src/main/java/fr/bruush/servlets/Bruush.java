@@ -40,7 +40,6 @@ public class Bruush extends HttpServlet {
 		if(id == null) {
 			id = "index";
 		}
-		System.out.println("Bruush servlet: " + id);
 		String nom;
 		String prenom;
 		String mail;
@@ -134,7 +133,6 @@ public class Bruush extends HttpServlet {
 				break;
 			case "index":
 			default:
-				System.out.println(articles.size());
 				request.setAttribute("articles", articles);
                 request.getRequestDispatcher("/index.jsp").forward(request,response);
 				break;
