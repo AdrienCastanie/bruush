@@ -13,6 +13,7 @@ import fr.bruush.beans.dao.DAOBruush;
 import fr.bruush.beans.dao.DAOFactory;
 import fr.bruush.beans.objects.Client;
 import fr.bruush.exceptions.ClientCreationException;
+import fr.bruush.exceptions.ClientNotFoundException;
 
 @WebServlet("/action")
 public class Bruush extends HttpServlet {
@@ -47,7 +48,14 @@ public class Bruush extends HttpServlet {
 			case "connexion":
 				mail = request.getParameter("email");
 				mdp = request.getParameter("mdp");
-				client = this.daoBruush.getClientByMailAndMdp(mail, mdp);
+				try {
+					client = this.daoBruush.getClientByMailAndMdp(mail, mdp);
+				} catch (ClientNotFoundException e) {
+					request.setAttribute("error", e);
+					request.getRequestDispatcher("/jsp/connexion.jsp").forward(request,response);
+					break;
+				}
+
 				if (client == null) {
 					// Le client n'existe pas
 					break;
@@ -68,7 +76,7 @@ public class Bruush extends HttpServlet {
 					client = this.daoBruush.createClient(nom, prenom, mail, mdp);
 				} catch (ClientCreationException e) {
 					request.setAttribute("error", e);
-					request.getRequestDispatcher("/create_account.jsp").forward(request,response);
+					request.getRequestDispatcher("/jsp/create_account.jsp").forward(request,response);
 					break;
 				}
 				session = request.getSession();

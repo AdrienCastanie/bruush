@@ -18,7 +18,7 @@ public interface DAOBruush {
 
     public abstract void delete(int id);
 
-    public abstract Client getClientByMailAndMdp(String mail, String mdp);
+    public abstract Client getClientByMailAndMdp(String mail, String mdp) throws ClientNotFoundException;
 
     public abstract Client createClient(String nom, String prenom, String mail, String mdp) throws ClientCreationException;
 
