@@ -20,9 +20,9 @@ import fr.bruush.exceptions.ClientNotFoundException;
 @WebServlet("/action")
 public class Bruush extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	private DAOBruush daoBruush;
-	
+
 	public void init() throws ServletException {
         DAOFactory daoFactory = DAOFactory.getInstance();
         daoBruush = daoFactory.getDAOClient("JPA");
@@ -32,9 +32,9 @@ public class Bruush extends HttpServlet {
 		processRequest(request,response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request,response);		
+		processRequest(request,response);
 	}
-	
+
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		if(id == null) {
@@ -96,8 +96,10 @@ public class Bruush extends HttpServlet {
 				request.getRequestDispatcher("/action?id=index").forward(request,response);
 
 				break;
-			case "admin_utilisateurs":
-
+			case "admin_clients":
+                List<Client> listClients = this.daoBruush.getClients();
+                request.setAttribute("clients", listClients);
+                request.getRequestDispatcher("/jsp/profile-admin-users.jsp").forward(request, response);
 				break;
 			case "edit":
 //				code = request.getParameter("code");
