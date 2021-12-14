@@ -85,7 +85,8 @@ public class Bruush extends HttpServlet {
 				session = request.getSession();
 				session.setAttribute("nom", client.getNom());
 				session.setAttribute("prenom", client.getPrenom());
-				if (client.getAddr().equals(null)) {
+				System.out.println("ADRIEN : " + client.getAddr());
+				if (client.getAddr() == null) {
 					session.setAttribute("adresse", "");
 				} else {
 					session.setAttribute("adresse", client.getAddr());

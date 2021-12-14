@@ -18,7 +18,7 @@
     <h3>Informations personnel</h3>
     <div>
         <div class="personnal-info-input-container">
-            <form action="/bruush/action?id=personal-info" method="post" class="form-example">
+            <form action="/bruush/action?id=personal-info" method="post">
                 <div class="name">
                     <label class="input-label" for="name">Nom :</label>
                     <input type="text" name="name" id="name" value="<%= session.getAttribute("nom") %>">
@@ -31,9 +31,7 @@
                     <label class="input-label" for="address">Adresse :</label>
                     <input type="text" name="address" id="address" value="<%= session.getAttribute("adresse") %>">
                 </div>
-                <div>
-                    <input class="form-submit-button" type="submit" value="Enregistrer">
-                </div>
+                <input class="stripe" type="submit" value="Enregistrer">
             </form>
         </div>
     </div>
