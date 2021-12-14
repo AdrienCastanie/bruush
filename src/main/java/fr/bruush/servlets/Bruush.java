@@ -96,20 +96,8 @@ public class Bruush extends HttpServlet {
 				request.getRequestDispatcher("/action?id=index").forward(request,response);
 
 				break;
-			case "add":
-//				String bookAdded = request.getParameter("bookadded");
-//				if(bookAdded != null) {
-//					if(bookAdded.equals("true")) {
-//			        	String title = request.getParameter("title");
-//			        	String author = request.getParameter("author");
-//			        	String description = request.getParameter("description");
-//						daoBook.add(title, author, description);
-//					}
-//					else {
-//						request.getRequestDispatcher("bibliotheque?id=display").forward(request,response);
-//					}
-//				}
-//				request.setAttribute("content", "add");
+			case "admin_utilisateurs":
+
 				break;
 			case "edit":
 //				code = request.getParameter("code");

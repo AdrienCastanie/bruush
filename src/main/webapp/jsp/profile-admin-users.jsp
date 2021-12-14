@@ -31,7 +31,6 @@
                 <td>Pineau</td>
                 <td>Quentin</td>
                 <td>test@test.fr</td>
-                <td>Non</td>
                 <td>
                     <label class="switch">
                         <input type="checkbox" checked>
