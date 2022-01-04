@@ -18,24 +18,23 @@
     <h3>Informations personnel</h3>
     <div>
         <div class="personnal-info-input-container">
-            <div class="name">
-                <label class="input-label" for="name">Nom :</label>
-                <input type="text" name="name" id="name">
-            </div>
-            <div class="surname">
-                <label class="input-label" for="surname">Prénom :</label>
-                <input type="text" name="surname" id="surname">
-            </div>
-            <div class="mail">
-                <label class="input-label" for="mail">Mail :</label>
-                <input type="text" name="mail" id="mail">
-            </div>
-            <div class="address">
-                <label class="input-label" for="address">Adresse :</label>
-                <input type="text" name="address" id="address">
-            </div>
+            <form action="/bruush/action?id=personal-info" method="post">
+                <input type="hidden" name="idClient" id="idClient" value="<%= session.getAttribute("id") %>">
+                <div class="name">
+                    <label class="input-label" for="name">Nom :</label>
+                    <input type="text" name="name" id="name" value="<%= session.getAttribute("nom") %>">
+                </div>
+                <div class="surname">
+                    <label class="input-label" for="surname">Prénom :</label>
+                    <input type="text" name="surname" id="surname" value="<%= session.getAttribute("prenom") %>">
+                </div>
+                <div class="address">
+                    <label class="input-label" for="address">Adresse :</label>
+                    <input type="text" name="address" id="address" value="<%= session.getAttribute("adresse") %>">
+                </div>
+                <input class="stripe" type="submit" value="Enregistrer">
+            </form>
         </div>
-        <button class="stripe">Enregistrer</button>
     </div>
 </div>
 </body>

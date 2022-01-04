@@ -4,6 +4,7 @@ import fr.bruush.beans.objects.Article;
 import fr.bruush.beans.objects.Client;
 import fr.bruush.exceptions.ClientCreationException;
 import fr.bruush.exceptions.ClientNotFoundException;
+import fr.bruush.exceptions.ClientUpdateException;
 
 import java.util.List;
 
@@ -16,6 +17,8 @@ public interface DAOBruush {
     public abstract List<Client> getClients();
 
     public void update(int id, String nom, String prenom, String mail, String addr, int bloque);
+
+    public void updateInfos(int id, String nom, String prenom, String addr) throws ClientUpdateException;
 
     public void updateClientBlocked(int id, int bloque);
 
