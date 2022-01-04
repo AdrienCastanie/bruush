@@ -96,21 +96,26 @@ public class Bruush extends HttpServlet {
 				request.getRequestDispatcher("/action?id=index").forward(request,response);
 
 				break;
+			case "cart":
+				request.setAttribute("articles", articles);
+				request.getRequestDispatcher("/jsp/cart.jsp").forward(request,response);
+        break;
 			case "admin_clients":
-                String id_client = request.getParameter("id_client");
-                String blocked = request.getParameter("blocked");
-                if(id_client != null && blocked != null) //Cela signifie que l'on a cliqué pour bloqué/débloqué un client
-                {
-                    this.daoBruush.updateClientBlocked(Integer.parseInt(id_client), (blocked.equals("true"))? 1 : 0);
-                }
-                List<Client> listClients = this.daoBruush.getClients();
-                request.setAttribute("clients", listClients);
-                request.getRequestDispatcher("/jsp/profile-admin-users.jsp").forward(request, response);
+        String id_client = request.getParameter("id_client");
+        String blocked = request.getParameter("blocked");
+        if(id_client != null && blocked != null) //Cela signifie que l'on a cliqué pour bloqué/débloqué un client
+        {
+            this.daoBruush.updateClientBlocked(Integer.parseInt(id_client), (blocked.equals("true"))? 1 : 0);
+        }
+        List<Client> listClients = this.daoBruush.getClients();
+        request.setAttribute("clients", listClients);
+        request.getRequestDispatcher("/jsp/profile-admin-users.jsp").forward(request, response);
 				break;
-			case "edit":
-//				code = request.getParameter("code");
-//				request.setAttribute("content", "edit");
-//				request.setAttribute("book", daoBook.getBook(code));
+			case "buy":
+				String[] panier = request.getParameterValues("panier");
+				for (int i = 0; i < panier.length; i++) {
+					System.out.println(panier[i]);
+				}
 				break;
 			case "delete":
 //				daoBook.delete(Integer.parseInt(request.getParameter("code")));

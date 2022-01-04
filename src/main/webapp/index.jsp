@@ -28,12 +28,22 @@
                     <div id="qty-article" class="qty-article-selected">1</div>
                     <input type="button" value="+" class="button-stock"  onclick="incrementValue()">
                 </div>
-                <form action="action?id=acheter" method="POST">
-                    <button class="stripe">Acheter</button>
-                </form>
+                <button id="${article.id}" class="stripe btnAcheter" style="visibility: hidden">Acheter</button>
             </div>
         </div>
     </c:forEach>
 </div>
 </body>
+<script>
+    window.addEventListener('load', () => {
+        Array.from(document.querySelectorAll(".btnAcheter")).forEach(elem => {
+            elem.style.visibility = "visible"
+            elem.addEventListener('click', (event) => {
+                const obj = JSON.parse(localStorage.getItem('panier')) || {};
+                obj[elem.id] = event.target.parentElement.querySelector('.qty-article-selected').textContent || "1";
+                localStorage.setItem('panier', JSON.stringify(obj));
+            })
+        })
+    });
+</script>
 </html>
