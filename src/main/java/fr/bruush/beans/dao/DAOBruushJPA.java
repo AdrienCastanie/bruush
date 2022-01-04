@@ -74,7 +74,23 @@ public class DAOBruushJPA implements DAOBruush {
 		}
 	}
 
-	@Override
+    @Override
+    public void updateClientBlocked(int id, int bloque)
+    {
+        EntityManager entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+        try {
+            Client client = entityManager.find(Client.class, id);
+            client.setBloque(bloque);
+            entityManager.merge(client);
+            entityManager.getTransaction().commit();
+        }
+        finally {
+            entityManager.close();
+        }
+    }
+
+    @Override
 	public void delete(int id) {
 		EntityManager entityManager = emf.createEntityManager();
 		entityManager.getTransaction().begin();

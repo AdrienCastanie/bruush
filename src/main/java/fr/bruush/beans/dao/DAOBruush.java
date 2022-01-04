@@ -17,6 +17,8 @@ public interface DAOBruush {
 
     public void update(int id, String nom, String prenom, String mail, String addr, int bloque);
 
+    public void updateClientBlocked(int id, int bloque);
+
     public abstract void delete(int id);
 
     public abstract Client getClientByMailAndMdp(String mail, String mdp) throws ClientNotFoundException;

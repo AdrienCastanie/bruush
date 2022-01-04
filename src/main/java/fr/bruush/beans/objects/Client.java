@@ -117,4 +117,10 @@ public class Client implements Serializable {
 	public void setMdp(String mdr) {
 		this.mdp = mdp;
 	}
+
+    @Override
+    public String toString()
+    {
+        return "Client{" + "id=" + id + ", nom='" + nom + '\'' + ", prenom='" + prenom + '\'' + ", mail='" + mail + '\'' + ", mdp='" + mdp + '\'' + ", addr='" + addr + '\'' + ", bloque=" + bloque + '}';
+    }
 }
