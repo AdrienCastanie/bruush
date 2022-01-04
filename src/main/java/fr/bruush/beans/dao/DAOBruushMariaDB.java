@@ -95,6 +95,19 @@ public class DAOBruushMariaDB implements DAOBruush {
 	    }		
 	}
 
+    @Override
+    public void updateClientBlocked(int id, int bloque) {
+        try (Connection connexion = daoFactory.getConnection()){
+            PreparedStatement preparedStatement = connexion.prepareStatement(
+                    "UPDATE CLIENT SET bloque=? WHERE id=?;");
+            preparedStatement.setInt(1, bloque);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 	@Override
 	public void delete(int id) {
 		try (Connection connexion = daoFactory.getConnection()){

@@ -97,6 +97,12 @@ public class Bruush extends HttpServlet {
 
 				break;
 			case "admin_clients":
+                String id_client = request.getParameter("id_client");
+                String blocked = request.getParameter("blocked");
+                if(id_client != null && blocked != null) //Cela signifie que l'on a cliqué pour bloqué/débloqué un client
+                {
+                    this.daoBruush.updateClientBlocked(Integer.parseInt(id_client), (blocked.equals("true"))? 1 : 0);
+                }
                 List<Client> listClients = this.daoBruush.getClients();
                 request.setAttribute("clients", listClients);
                 request.getRequestDispatcher("/jsp/profile-admin-users.jsp").forward(request, response);
