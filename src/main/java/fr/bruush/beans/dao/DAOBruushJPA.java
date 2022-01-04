@@ -4,6 +4,7 @@ import fr.bruush.beans.objects.Article;
 import fr.bruush.beans.objects.Client;
 import fr.bruush.exceptions.ClientCreationException;
 import fr.bruush.exceptions.ClientNotFoundException;
+import fr.bruush.exceptions.ClientUpdateException;
 
 import java.util.List;
 
@@ -66,6 +67,25 @@ public class DAOBruushJPA implements DAOBruush {
 		entityManager.getTransaction().begin();
 		try {
 			Client client = new Client(id, nom, prenom, mail, addr, bloque);
+			entityManager.merge(client);
+			entityManager.getTransaction().commit();
+		}
+		finally {
+			entityManager.close();
+		}
+	}
+
+	@Override
+	public void updateInfos(int id, String nom, String prenom, String addr) throws ClientUpdateException {
+		if (id == -1)
+			throw new ClientUpdateException("Vous devez vous connecter.");
+		EntityManager entityManager = emf.createEntityManager();
+		entityManager.getTransaction().begin();
+		try {
+			Client client = entityManager.find(Client.class, id);
+			client.setNom(nom);
+			client.setPrenom(prenom);
+			client.setAddr(addr);
 			entityManager.merge(client);
 			entityManager.getTransaction().commit();
 		}

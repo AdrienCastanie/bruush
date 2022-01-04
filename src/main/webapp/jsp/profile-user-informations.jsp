@@ -19,6 +19,7 @@
     <div>
         <div class="personnal-info-input-container">
             <form action="/bruush/action?id=personal-info" method="post">
+                <input type="hidden" name="idClient" id="idClient" value="<%= session.getAttribute("id") %>">
                 <div class="name">
                     <label class="input-label" for="name">Nom :</label>
                     <input type="text" name="name" id="name" value="<%= session.getAttribute("nom") %>">

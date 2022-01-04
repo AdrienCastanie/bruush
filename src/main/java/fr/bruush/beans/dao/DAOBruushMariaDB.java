@@ -96,6 +96,11 @@ public class DAOBruushMariaDB implements DAOBruush {
 	}
 
 	@Override
+	public void updateInfos(int id, String nom, String prenom, String addr) {
+		System.out.println("update");
+	}
+
+	@Override
 	public void delete(int id) {
 		try (Connection connexion = daoFactory.getConnection()){
 			PreparedStatement preparedStatement = connexion.prepareStatement(
