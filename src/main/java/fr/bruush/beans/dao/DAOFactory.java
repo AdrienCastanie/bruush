@@ -60,4 +60,7 @@ public class DAOFactory {
 		}
 	}
 
+	public EntityManagerFactory getEmf() {
+		return emf;
+	}
 }

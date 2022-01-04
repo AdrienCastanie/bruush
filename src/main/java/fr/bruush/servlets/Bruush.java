@@ -21,11 +21,11 @@ import fr.bruush.exceptions.ClientNotFoundException;
 public class Bruush extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	private DAOFactory daoFactory;
 	private DAOBruush daoBruush;
 
 	public void init() throws ServletException {
-        DAOFactory daoFactory = DAOFactory.getInstance();
-        daoBruush = daoFactory.getDAOClient("JPA");
+		this.daoFactory = DAOFactory.getInstance();
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,6 +36,7 @@ public class Bruush extends HttpServlet {
 	}
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		daoBruush = daoFactory.getDAOClient("JPA");
 		String id = request.getParameter("id");
 		if(id == null) {
 			id = "index";
@@ -138,5 +139,6 @@ public class Bruush extends HttpServlet {
                 request.getRequestDispatcher("/index.jsp").forward(request,response);
 				break;
 		}
+		daoFactory.getEmf().close();
 	}
 }
