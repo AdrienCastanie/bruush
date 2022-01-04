@@ -12,6 +12,7 @@
     <title>Profil</title>
     <link rel="stylesheet" href="/bruush/css/style.css">
     <link rel="stylesheet" href="/bruush/css/profile.css">
+    <script type="text/javascript" src="/bruush/js/admin-users.js"></script>
 </head>
 <body>
 <jsp:include page="profile-nav-bar.jsp"/>
@@ -36,10 +37,10 @@
                 <td>
                     <label class="switch">
                         <c:if test="${ client.bloque == 1 }">
-                            <input type="checkbox" checked>
+                            <input type="checkbox" checked onclick="onBloqueChange(this, ${client.id})">
                         </c:if>
                         <c:if test="${ client.bloque == 0 }">
-                            <input type="checkbox">
+                            <input type="checkbox" onclick="onBloqueChange(this, ${client.id})">
                         </c:if>
                         <span class="slider round"></span>
                     </label>
