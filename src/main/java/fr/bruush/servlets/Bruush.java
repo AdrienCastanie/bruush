@@ -20,9 +20,9 @@ import fr.bruush.exceptions.ClientNotFoundException;
 @WebServlet("/action")
 public class Bruush extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	private DAOBruush daoBruush;
-	
+
 	public void init() throws ServletException {
         DAOFactory daoFactory = DAOFactory.getInstance();
         daoBruush = daoFactory.getDAOClient("JPA");
@@ -32,9 +32,9 @@ public class Bruush extends HttpServlet {
 		processRequest(request,response);
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request,response);		
+		processRequest(request,response);
 	}
-	
+
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id = request.getParameter("id");
 		if(id == null) {
@@ -99,6 +99,17 @@ public class Bruush extends HttpServlet {
 			case "cart":
 				request.setAttribute("articles", articles);
 				request.getRequestDispatcher("/jsp/cart.jsp").forward(request,response);
+        break;
+			case "admin_clients":
+        String id_client = request.getParameter("id_client");
+        String blocked = request.getParameter("blocked");
+        if(id_client != null && blocked != null) //Cela signifie que l'on a cliqué pour bloqué/débloqué un client
+        {
+            this.daoBruush.updateClientBlocked(Integer.parseInt(id_client), (blocked.equals("true"))? 1 : 0);
+        }
+        List<Client> listClients = this.daoBruush.getClients();
+        request.setAttribute("clients", listClients);
+        request.getRequestDispatcher("/jsp/profile-admin-users.jsp").forward(request, response);
 				break;
 			case "buy":
 				String[] panier = request.getParameterValues("panier");
