@@ -31,4 +31,6 @@ public interface DAOBruush {
     public abstract Client createClient(String nom, String prenom, String mail, String mdp) throws ClientCreationException;
 
     public abstract List<Article> getArticles();
+
+    public abstract void changeQteArticle(int idArticle, int newQte);
 }

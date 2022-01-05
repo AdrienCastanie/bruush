@@ -7,6 +7,6 @@ function onDeleteArticle(articleId) {
 }
 
 function onQteChange(articleId) {
-    let newQte = document.getElementById("stock-"+articleId).value;
-    console.log("QUENTIN " + articleId + " " + newQte);
+    let newQte = document.getElementById("stock-" + articleId).value;
+    window.location.href = window.location.origin + "/bruush/action?id=admin_products&id_article=" + articleId + "&new_qte=" + newQte;
 }

@@ -188,4 +188,20 @@ public class DAOBruushJPA implements DAOBruush {
 		}
 		return catalog;
 	}
+
+    @Override
+    public void changeQteArticle(int id, int newQte)
+    {
+        EntityManager entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+        try {
+            Article article = entityManager.find(Article.class, id);
+            article.setStock(newQte);
+            entityManager.merge(article);
+            entityManager.getTransaction().commit();
+        }
+        finally {
+            entityManager.close();
+        }
+    }
 }
