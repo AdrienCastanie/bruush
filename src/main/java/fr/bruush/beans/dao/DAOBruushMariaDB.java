@@ -117,13 +117,25 @@ public class DAOBruushMariaDB implements DAOBruush {
 	public void delete(int id) {
 		try (Connection connexion = daoFactory.getConnection()){
 			PreparedStatement preparedStatement = connexion.prepareStatement(
-				"DELETE FROM books WHERE id=?;");
+				"DELETE FROM CLIENT WHERE id=?;");
 			preparedStatement.setInt(1, id);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		
 	}
+
+    @Override
+    public void deleteArticle(int idArticle) {
+        try (Connection connexion = daoFactory.getConnection()){
+            PreparedStatement preparedStatement = connexion.prepareStatement(
+                    "DELETE FROM ARTICLE WHERE id=?;");
+            preparedStatement.setInt(1, idArticle);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 	@Override
 	public Client getClientByMailAndMdp(String mail, String mdp) {

@@ -46,6 +46,15 @@ input:focus {
     width: 10vw;
 }
 
+#btn-delete-articles {
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
 .stripe:hover {
     border: 2px solid #0077ff;
     background: #0077ff;
