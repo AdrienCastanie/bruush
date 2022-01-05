@@ -184,6 +184,11 @@ public class Bruush extends HttpServlet
                 request.getRequestDispatcher("/jsp/profile-admin-users.jsp").forward(request, response);
                 break;
             case "admin_products":
+                String idArticle = request.getParameter("id_article");
+                if (idArticle != null) //Cela signifie que l'on a cliqué pour supprimer un article
+                {
+                    this.daoBruush.deleteArticle(Integer.parseInt(idArticle));
+                }
                 List<Article> listArticles = this.daoBruush.getArticles();
                 request.setAttribute("articles", listArticles);
                 request.getRequestDispatcher("/jsp/profile-admin-products.jsp").forward(request, response);

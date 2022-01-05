@@ -12,7 +12,7 @@
     <title>Profil</title>
     <link rel="stylesheet" href="/bruush/css/style.css">
     <link rel="stylesheet" href="/bruush/css/profile.css">
-    <script type="text/javascript" src="/bruush/js/admin-users.js"></script>
+    <script type="text/javascript" src="/bruush/js/admin.js"></script>
 </head>
 <body>
 <jsp:include page="profile-nav-bar.jsp"/>
@@ -36,7 +36,7 @@
                 <td>${article.stock}</td>
                 <td>${article.description}</td>
                 <td>
-                    <button id="btn-delete-articles">Supprimer</button>
+                    <button id="btn-delete-articles" onclick="onDeleteArticle(${article.id})">Supprimer</button>
                 </td>
             </tr>
             </c:forEach>

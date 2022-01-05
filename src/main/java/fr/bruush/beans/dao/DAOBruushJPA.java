@@ -124,6 +124,20 @@ public class DAOBruushJPA implements DAOBruush {
 		}
 	}
 
+    @Override
+    public void deleteArticle(int idArticle) {
+        EntityManager entityManager = emf.createEntityManager();
+        entityManager.getTransaction().begin();
+        try {
+            Article article = entityManager.find(Article.class, idArticle);
+            entityManager.remove(article);
+            entityManager.getTransaction().commit();
+        }
+        finally {
+            entityManager.close();
+        }
+    }
+
 	@Override
 	public Client getClientByMailAndMdp(String mail, String mdp) throws ClientNotFoundException {
 		EntityManager entityManager = emf.createEntityManager();

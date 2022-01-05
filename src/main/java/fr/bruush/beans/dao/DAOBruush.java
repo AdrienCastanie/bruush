@@ -24,10 +24,11 @@ public interface DAOBruush {
 
     public abstract void delete(int id);
 
+    public abstract void deleteArticle(int idArticle);
+
     public abstract Client getClientByMailAndMdp(String mail, String mdp) throws ClientNotFoundException;
 
     public abstract Client createClient(String nom, String prenom, String mail, String mdp) throws ClientCreationException;
 
     public abstract List<Article> getArticles();
-
 }
