@@ -167,4 +167,17 @@ public class DAOBruushMariaDB implements DAOBruush {
 		}
 		return articles;
 	}
+
+    @Override
+    public void changeQteArticle(int id, int newQte) {
+        try (Connection connexion = daoFactory.getConnection()){
+            PreparedStatement preparedStatement = connexion.prepareStatement(
+                    "UPDATE ARTICLE SET stock=? WHERE id=?;");
+            preparedStatement.setInt(1, newQte);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

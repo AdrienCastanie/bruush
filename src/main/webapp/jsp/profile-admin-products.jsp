@@ -24,8 +24,8 @@
             <tr>
                 <th>Nom</th>
                 <th>Prix</th>
-                <th>Stock</th>
                 <th>Description</th>
+                <th>Stock</th>
             </tr>
             </thead>
             <tbody>
@@ -33,8 +33,11 @@
             <tr>
                 <td>${article.nom}</td>
                 <td>${article.prix}</td>
-                <td>${article.stock}</td>
                 <td>${article.description}</td>
+                <td>
+                    <input type="text" name="stock" id="stock-${article.id}" value="${article.stock}">
+                    <button id="save-new-qte-articles" onclick="onQteChange(${article.id})">Enregistrer</button>
+                </td>
                 <td>
                     <button id="btn-delete-articles" onclick="onDeleteArticle(${article.id})">Supprimer</button>
                 </td>

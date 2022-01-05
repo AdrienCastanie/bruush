@@ -5,3 +5,8 @@ function onBloqueChange(input, userId) {
 function onDeleteArticle(articleId) {
     window.location.href = window.location.origin + "/bruush/action?id=admin_products&id_article=" + articleId;
 }
+
+function onQteChange(articleId) {
+    let newQte = document.getElementById("stock-" + articleId).value;
+    window.location.href = window.location.origin + "/bruush/action?id=admin_products&id_article=" + articleId + "&new_qte=" + newQte;
+}

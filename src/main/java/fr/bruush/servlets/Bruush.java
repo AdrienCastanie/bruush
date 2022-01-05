@@ -185,9 +185,13 @@ public class Bruush extends HttpServlet
                 break;
             case "admin_products":
                 String idArticle = request.getParameter("id_article");
-                if (idArticle != null) //Cela signifie que l'on a cliqué pour supprimer un article
+                String newQte = request.getParameter("new_qte");
+                if (idArticle != null && newQte == null) //Cela signifie que l'on a cliqué pour supprimer un article
                 {
                     this.daoBruush.deleteArticle(Integer.parseInt(idArticle));
+                }else if(idArticle != null && newQte != null) //Cela signifie que l'on change la quantité d'un article en stock
+                {
+                    this.daoBruush.changeQteArticle(Integer.parseInt(idArticle), Integer.parseInt(newQte));
                 }
                 List<Article> listArticles = this.daoBruush.getArticles();
                 request.setAttribute("articles", listArticles);
