@@ -197,7 +197,6 @@ public class Bruush extends HttpServlet {
                     List<Commande> commandes = this.daoBruush.getCommandesByIdClient(
                             (int) session.getAttribute("id"));
                     for (Commande c : commandes) {
-                        System.out.println("Commande " + c.getId());
                         List<Achat> achatsCommande = this.daoBruush.getAchatsByIdCommande(c.getId());
                         List<Article> articlesCommande = new ArrayList<>();
                         for (Achat a : achatsCommande) {

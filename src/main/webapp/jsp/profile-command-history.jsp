@@ -13,11 +13,27 @@
     <div class="commandes">
         <c:forEach var="entry" items="${historiqueArticle}">
             <h5>Commande du <span>${entry.key.date}</span></h5>
-            <c:forEach var="articles" items="${entry.value}" varStatus="loop">
-                <span>Nom: <span>${articles.nom}</span></span>
-                <span>Quantité: <span>${historiqueAchat[entry.key][loop.index].qte}</span></span>
-                <br/>
-            </c:forEach>
+            <table class="fl-table">
+                <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Quantité</th>
+                    <th>Prix Unit</th>
+                    <th>Total</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach var="articles" items="${entry.value}" varStatus="loop">
+                <tr>
+                    <td>${articles.nom}</td>
+                    <td>${historiqueAchat[entry.key][loop.index].qte}€</td>
+                    <td>${articles.prix}€</td>
+                    <td><c:out value="${articles.prix * historiqueAchat[entry.key][loop.index].qte}€"/></td>
+                </tr>
+                </c:forEach>
+                <tbody>
+            </table>
+            <span>Total: <span>${entry.key.total}</span>€</span>
         </c:forEach>
     </div>
 </div>

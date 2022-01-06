@@ -14,6 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
+import java.util.ArrayList;
 import java.util.List;
 
 public class DAOBruushJPA implements DAOBruush {
@@ -31,8 +32,10 @@ public class DAOBruushJPA implements DAOBruush {
         try {
             entityManager.persist(new Client(nom, prenom, mail, addr, bloque));
             entityManager.getTransaction().commit();
-        } finally {
             entityManager.close();
+        } catch (Exception e) {
+            entityManager.close();
+            e.printStackTrace();
         }
     }
 
@@ -40,22 +43,30 @@ public class DAOBruushJPA implements DAOBruush {
     public Client getClient(int id) {
         EntityManager entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
+        Client c = null;
         try {
-            return entityManager.find(Client.class, id);
-        } finally {
+            c = entityManager.find(Client.class, id);
+            entityManager.getTransaction().commit();
             entityManager.close();
+        } catch (Exception e) {
+            entityManager.close();
+            e.printStackTrace();
         }
+        return c;
     }
 
     @Override
     public List<Client> getClients() {
-        List<Client> catalog;
+        List<Client> catalog = new ArrayList<>();
         EntityManager entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
         try {
             catalog = entityManager.createQuery("from Client", Client.class).getResultList();
-        } finally {
+            entityManager.getTransaction().commit();
             entityManager.close();
+        } catch (Exception e) {
+            entityManager.close();
+            e.printStackTrace();
         }
         return catalog;
     }
@@ -68,8 +79,10 @@ public class DAOBruushJPA implements DAOBruush {
             Client client = new Client(id, nom, prenom, mail, addr, bloque);
             entityManager.merge(client);
             entityManager.getTransaction().commit();
-        } finally {
             entityManager.close();
+        } catch (Exception e) {
+            entityManager.close();
+            e.printStackTrace();
         }
     }
 
@@ -86,8 +99,10 @@ public class DAOBruushJPA implements DAOBruush {
             client.setAddr(addr);
             entityManager.merge(client);
             entityManager.getTransaction().commit();
-        } finally {
             entityManager.close();
+        } catch (Exception e) {
+            entityManager.close();
+            e.printStackTrace();
         }
     }
 
@@ -100,8 +115,10 @@ public class DAOBruushJPA implements DAOBruush {
             client.setBloque(bloque);
             entityManager.merge(client);
             entityManager.getTransaction().commit();
-        } finally {
             entityManager.close();
+        } catch (Exception e) {
+            entityManager.close();
+            e.printStackTrace();
         }
     }
 
@@ -113,8 +130,10 @@ public class DAOBruushJPA implements DAOBruush {
             Client client = entityManager.find(Client.class, id);
             entityManager.remove(client);
             entityManager.getTransaction().commit();
-        } finally {
             entityManager.close();
+        } catch (Exception e) {
+            entityManager.close();
+            e.printStackTrace();
         }
     }
 
@@ -126,8 +145,10 @@ public class DAOBruushJPA implements DAOBruush {
             Article article = entityManager.find(Article.class, idArticle);
             entityManager.remove(article);
             entityManager.getTransaction().commit();
-        } finally {
             entityManager.close();
+        } catch (Exception e) {
+            entityManager.close();
+            e.printStackTrace();
         }
     }
 
@@ -141,11 +162,13 @@ public class DAOBruushJPA implements DAOBruush {
                     Client.class);
             q.setParameter("mail", mail);
             q.setParameter("mdp", mdp);
-            return (Client) q.getSingleResult();
-        } catch (Exception e) {
-            throw new ClientNotFoundException(e.getMessage());
-        } finally {
+            Client c = (Client) q.getSingleResult();
+            entityManager.getTransaction().commit();
             entityManager.close();
+            return c;
+        } catch (Exception e) {
+            entityManager.close();
+            throw new ClientNotFoundException(e.getMessage());
         }
     }
 
@@ -159,23 +182,26 @@ public class DAOBruushJPA implements DAOBruush {
             transaction.begin();
             entityManager.persist(c);
             transaction.commit();
+            entityManager.close();
             return c;
         } catch (Exception e) {
             transaction.rollback();
-            throw new ClientCreationException(e.getMessage());
-        } finally {
             entityManager.close();
+            throw new ClientCreationException(e.getMessage());
         }
     }
 
     @Override
     public List<Article> getArticles() {
-        List<Article> catalog;
+        List<Article> catalog = new ArrayList<>();
         EntityManager entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
         try {
             catalog = entityManager.createQuery("from Article", Article.class).getResultList();
-        } finally {
+            entityManager.getTransaction().commit();
+            entityManager.close();
+        } catch (Exception e) {
+            e.printStackTrace();
             entityManager.close();
         }
         return catalog;
@@ -190,12 +216,11 @@ public class DAOBruushJPA implements DAOBruush {
             transaction.begin();
             entityManager.persist(c);
             transaction.commit();
+            entityManager.close();
             return c;
         } catch (Exception e) {
             transaction.rollback();
             throw new CommandeCreationException(e.getMessage());
-        } finally {
-            entityManager.close();
         }
     }
 
@@ -208,12 +233,11 @@ public class DAOBruushJPA implements DAOBruush {
             transaction.begin();
             entityManager.persist(a);
             transaction.commit();
+            entityManager.close();
             return a;
         } catch (Exception e) {
             transaction.rollback();
             throw new CommandeCreationException(e.getMessage());
-        } finally {
-            entityManager.close();
         }
     }
 
@@ -226,8 +250,9 @@ public class DAOBruushJPA implements DAOBruush {
             article.setStock(newQte);
             entityManager.merge(article);
             entityManager.getTransaction().commit();
-        } finally {
             entityManager.close();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -240,11 +265,14 @@ public class DAOBruushJPA implements DAOBruush {
                     "SELECT * FROM COMMANDE WHERE id_client = :idClient",
                     Commande.class);
             q.setParameter("idClient", idClient);
-            return (List<Commande>) q.getResultList();
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        } finally {
+
+            List<Commande> lc = (List<Commande>) q.getResultList();
+            entityManager.getTransaction().commit();
             entityManager.close();
+            return lc;
+        } catch (Exception e) {
+            entityManager.close();
+            throw new Exception(e.getMessage());
         }
     }
 
@@ -257,11 +285,13 @@ public class DAOBruushJPA implements DAOBruush {
                     "SELECT * FROM ACHAT WHERE id_commande = :idCommande",
                     Achat.class);
             q.setParameter("idCommande", idCommande);
-            return (List<Achat>) q.getResultList();
-        } catch (Exception e) {
-            throw new Exception(e.getMessage());
-        } finally {
+            List<Achat> la = (List<Achat>) q.getResultList();
+            entityManager.getTransaction().commit();
             entityManager.close();
+            return la;
+        } catch (Exception e) {
+            entityManager.close();
+            throw new Exception(e.getMessage());
         }
     }
 
@@ -270,7 +300,10 @@ public class DAOBruushJPA implements DAOBruush {
         EntityManager entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
         try {
-            return entityManager.find(Article.class, id);
+            Article a = entityManager.find(Article.class, id);
+            entityManager.getTransaction().commit();
+            entityManager.close();
+            return a;
         } finally {
             entityManager.close();
         }
