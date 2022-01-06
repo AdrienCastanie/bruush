@@ -1,11 +1,15 @@
 package fr.bruush.beans.dao;
 
+import fr.bruush.beans.objects.Achat;
 import fr.bruush.beans.objects.Article;
 import fr.bruush.beans.objects.Client;
+import fr.bruush.beans.objects.Commande;
 import fr.bruush.exceptions.ClientCreationException;
 import fr.bruush.exceptions.ClientNotFoundException;
 import fr.bruush.exceptions.ClientUpdateException;
+import fr.bruush.exceptions.CommandeCreationException;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -94,7 +98,6 @@ public class DAOBruushJPA implements DAOBruush {
 		}
 	}
 
-	@Override
     @Override
     public void updateClientBlocked(int id, int bloque)
     {
@@ -174,5 +177,41 @@ public class DAOBruushJPA implements DAOBruush {
 			entityManager.close();
 		}
 		return catalog;
+	}
+
+	@Override
+	public Commande createCommande(int idClient, int total, Date date) throws CommandeCreationException {
+		EntityManager entityManager = emf.createEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		try {
+			Commande c = new Commande(idClient, total, date);
+			transaction.begin();
+			entityManager.persist(c);
+			transaction.commit();
+			return c;
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new CommandeCreationException(e.getMessage());
+		} finally {
+			entityManager.close();
+		}
+	}
+
+	@Override
+	public Achat createAchat(int idCommande, int idArticle, int qte) throws CommandeCreationException {
+		EntityManager entityManager = emf.createEntityManager();
+		EntityTransaction transaction = entityManager.getTransaction();
+		try {
+			Achat a = new Achat(idCommande, idArticle, qte);
+			transaction.begin();
+			entityManager.persist(a);
+			transaction.commit();
+			return a;
+		} catch (Exception e) {
+			transaction.rollback();
+			throw new CommandeCreationException(e.getMessage());
+		} finally {
+			entityManager.close();
+		}
 	}
 }

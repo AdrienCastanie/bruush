@@ -1,6 +1,9 @@
 package fr.bruush.beans.dao;
+import fr.bruush.beans.objects.Achat;
 import fr.bruush.beans.objects.Article;
 import fr.bruush.beans.objects.Client;
+import fr.bruush.beans.objects.Commande;
+import fr.bruush.exceptions.CommandeCreationException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class DAOBruushMariaDB implements DAOBruush {
@@ -154,5 +158,15 @@ public class DAOBruushMariaDB implements DAOBruush {
 			e.printStackTrace();
 		}
 		return articles;
+	}
+
+	@Override
+	public Commande createCommande(int idClient, int total, Date date) throws CommandeCreationException {
+		return null;
+	}
+
+	@Override
+	public Achat createAchat(int idCommande, int idArticle, int qte) throws CommandeCreationException {
+		return null;
 	}
 }

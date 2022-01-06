@@ -1,6 +1,8 @@
 package fr.bruush.servlets;
 
 import java.io.IOException;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,9 +16,11 @@ import fr.bruush.beans.dao.DAOBruush;
 import fr.bruush.beans.dao.DAOFactory;
 import fr.bruush.beans.objects.Client;
 import fr.bruush.beans.objects.Article;
+import fr.bruush.beans.objects.Commande;
 import fr.bruush.exceptions.ClientCreationException;
 import fr.bruush.exceptions.ClientNotFoundException;
 import fr.bruush.exceptions.ClientUpdateException;
+import fr.bruush.exceptions.CommandeCreationException;
 
 @WebServlet("/action")
 public class Bruush extends HttpServlet {
@@ -48,7 +52,7 @@ public class Bruush extends HttpServlet {
 		String mdp;
 		String adresse;
 		Client client;
-		HttpSession session;
+		HttpSession session = null;
 		List<Article> articles = this.daoBruush.getArticles();
 		switch(id) {
 			case "connexion":
@@ -75,6 +79,7 @@ public class Bruush extends HttpServlet {
 					session.setAttribute("adresse", client.getAddr());
 				}
 				session.setAttribute("id", client.getId());
+				session.setAttribute("bloque", client.getBloque());
 				request.setAttribute("content", "welcome");
 				request.getRequestDispatcher("/action?id=index").forward(request,response);
 				break;
@@ -99,6 +104,7 @@ public class Bruush extends HttpServlet {
 					session.setAttribute("adresse", client.getAddr());
 				}
 				session.setAttribute("id", client.getId());
+				session.setAttribute("bloque", client.getBloque());
 				request.getRequestDispatcher("/action?id=index").forward(request,response);
 
 				break;
@@ -147,22 +153,32 @@ public class Bruush extends HttpServlet {
 			case "cart":
 				request.setAttribute("articles", articles);
 				request.getRequestDispatcher("/jsp/cart.jsp").forward(request,response);
-        break;
+        		break;
 			case "admin_clients":
-        String id_client = request.getParameter("id_client");
-        String blocked = request.getParameter("blocked");
-        if(id_client != null && blocked != null) //Cela signifie que l'on a cliqué pour bloqué/débloqué un client
-        {
-            this.daoBruush.updateClientBlocked(Integer.parseInt(id_client), (blocked.equals("true"))? 1 : 0);
-        }
-        List<Client> listClients = this.daoBruush.getClients();
-        request.setAttribute("clients", listClients);
-        request.getRequestDispatcher("/jsp/profile-admin-users.jsp").forward(request, response);
+				String id_client = request.getParameter("id_client");
+				String blocked = request.getParameter("blocked");
+				if(id_client != null && blocked != null) //Cela signifie que l'on a cliqué pour bloqué/débloqué un client
+				{
+					this.daoBruush.updateClientBlocked(Integer.parseInt(id_client), (blocked.equals("true"))? 1 : 0);
+				}
+				List<Client> listClients = this.daoBruush.getClients();
+				request.setAttribute("clients", listClients);
+				request.getRequestDispatcher("/jsp/profile-admin-users.jsp").forward(request, response);
 				break;
 			case "buy":
 				String[] panier = request.getParameterValues("panier");
-				for (int i = 0; i < panier.length; i++) {
-					System.out.println(panier[i]);
+				int total = Integer.parseInt(request.getParameter("total"));
+				try {
+					Commande commande = this.daoBruush.createCommande(
+							Integer.parseInt((String)session.getAttribute("id")), total, new Date());
+					for (int i = 0; i < panier.length; i++) {
+						String[] values = panier[i].split("-");
+						this.daoBruush.createAchat(commande.getId(),
+												   Integer.parseInt(values[0]),
+												   Integer.parseInt(values[1]));
+					}
+				} catch (CommandeCreationException e) {
+					System.out.println(e);
 				}
 				break;
 			case "delete":
