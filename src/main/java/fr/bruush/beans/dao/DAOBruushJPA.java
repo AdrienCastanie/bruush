@@ -209,9 +209,14 @@ public class DAOBruushJPA implements DAOBruush {
             throw new CommandeCreationException(e.getMessage());
         }
     }
+
     @Transactional
     @Override
-    public Article createArticle(String nomArticle, String description, String imageArticle, int prixArticle, int stockArticle) {
+    public Article createArticle(String nomArticle,
+                                 String description,
+                                 String imageArticle,
+                                 int prixArticle,
+                                 int stockArticle) {
         EntityManager entityManager = emf.createEntityManager();
         EntityTransaction transaction = entityManager.getTransaction();
         try {
@@ -219,7 +224,7 @@ public class DAOBruushJPA implements DAOBruush {
             transaction.begin();
             entityManager.persist(a);
             transaction.commit();
-            System.out.println("QUENTIN " + a.toString());
+            entityManager.close();
             return a;
         } catch (Exception e) {
             e.printStackTrace();
