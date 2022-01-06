@@ -9,7 +9,7 @@ public class Article implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id_article")
+    @Column(name="id_article", columnDefinition = "integer")
     private int id;
 
     @Column(name="nom")

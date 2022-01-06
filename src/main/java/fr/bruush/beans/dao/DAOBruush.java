@@ -29,6 +29,8 @@ public interface DAOBruush {
 
     void deleteArticle(int idArticle);
 
+    Article createArticle(String nomArticle,String description, String imageArticle, int prixArticle, int stockArticle);
+
     Client getClientByMailAndMdp(String mail, String mdp) throws ClientNotFoundException;
 
     Client createClient(String nom, String prenom, String mail, String mdp) throws
