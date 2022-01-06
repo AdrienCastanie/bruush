@@ -231,9 +231,11 @@ public class Bruush extends HttpServlet {
                     this.getSessionID(request), total, new Date().toString());
             for (int i = 0; i < panier.length; i++) {
                 String[] values = panier[i].split("-");
-                this.daoBruush.createAchat(commande.getId(),
-                                           Integer.parseInt(values[0]),
-                                           Integer.parseInt(values[1]));
+                int idArticle = Integer.parseInt(values[0]);
+                int qteArticle = Integer.parseInt(values[1]);
+                this.daoBruush.createAchat(commande.getId(), idArticle, qteArticle);
+                Article article = this.daoBruush.getArticle(idArticle);
+                this.daoBruush.changeQteArticle(idArticle, article.getStock() - qteArticle);
             }
         } catch (CommandeCreationException e) {
             System.out.println(e);
