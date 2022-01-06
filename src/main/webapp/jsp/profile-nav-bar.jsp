@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/bruush/css/profile-nav-bar.css">
 <div class="profile-nav-bar-container">
     <a class="decoration-none"
-       href="/bruush/index.jsp">
+       href="/bruush/">
         <h1>BRUUSH</h1>
     </a>
     <span></span>
@@ -12,7 +12,7 @@
     </a>
     <a id="menu-item-command-history"
        class="menu-item"
-       href="/bruush/jsp/profile-command-history.jsp">
+       href="/bruush/action?id=history">
         <h2>Historique de commande</h2>
     </a>
     <a id="menu-item-admin-users"

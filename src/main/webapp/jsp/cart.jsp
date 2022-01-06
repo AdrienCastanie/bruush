@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <html>
 <head>
@@ -98,7 +98,7 @@
             </div>
         </div>
     </div>
-    <div id="modal-facture" class="modal">
+    <div id="modal-facture" class="modal" style="display: none">
         <div class="modal-content">
             <h1>Facture</h1>
             <c:forEach items="${articles}" var="article">
