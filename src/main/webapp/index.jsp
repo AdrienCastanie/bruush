@@ -1,4 +1,4 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -6,10 +6,10 @@
     <title>Bruush</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="js/index.js"></script>
 </head>
 <body>
 <jsp:include page="jsp/header.jsp"/>
-<script type="text/javascript" src="js/quantity.js"></script>
 <div class="main-container">
     <c:forEach items="${articles}" var="article">
         <div class="center-container article-container">
@@ -21,13 +21,14 @@
             <div class="right-article-container">
                 <div class="price-stock-container">
                     <label class="article-price">${article.prix}€</label>
-                    <label id="stock" class="article-stock">Stock : ${article.stock}</label>
+                    <label class="article-stock">Stock : <span
+                            class="article-stock-value">${article.stock}</span></label>
                 </div>
                 <c:if test="${ not empty sessionScope.id }">
                     <div class="qty-article-container">
-                        <input type="button" value="-" class="button-stock" onclick="decrementValue()">
-                        <div id="qty-article" class="qty-article-selected">1</div>
-                        <input type="button" value="+" class="button-stock"  onclick="incrementValue()">
+                        <input type="button" value="-" class="button-stock minus">
+                        <div class="qty-article-selected">1</div>
+                        <input type="button" value="+" class="button-stock plus">
                     </div>
                     <button id="${article.id}" class="stripe btnAcheter" style="visibility: hidden">Acheter</button>
                 </c:if>
@@ -36,17 +37,4 @@
     </c:forEach>
 </div>
 </body>
-<script>
-    window.addEventListener('load', () => {
-        Array.from(document.querySelectorAll(".btnAcheter")).forEach(elem => {
-            elem.style.visibility = "visible"
-            elem.addEventListener('click', (event) => {
-                const obj = JSON.parse(localStorage.getItem('panier')) || {};
-                obj[elem.id] = Number.parseInt(event.target.parentElement.querySelector('.qty-article-selected')
-                    .textContent) || 1;
-                localStorage.setItem('panier', JSON.stringify(obj));
-            })
-        })
-    });
-</script>
 </html>

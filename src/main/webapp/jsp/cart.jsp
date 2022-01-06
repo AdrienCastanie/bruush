@@ -5,6 +5,7 @@
     <title>Cart</title>
     <link rel="stylesheet" href="/bruush/css/style.css">
     <link rel="stylesheet" href="/bruush/css/cart.css">
+    <!-- script type="text/javascript" src="/bruush/js/quantity.js"></script> -->
     <script>
         window.addEventListener('load', () => {
             const totalPriceElem = document.getElementById('total-price');
@@ -70,7 +71,6 @@
 </head>
 <body>
 <jsp:include page="header.jsp"/>
-<script type="text/javascript" src="/bruush/js/quantity.js"></script>
 <div class="main-container" style="visibility: hidden">
     <div class="center-container cart-container">
         <h2>Panier</h2>
