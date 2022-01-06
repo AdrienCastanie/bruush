@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="commande")
+@Table(name="COMMANDE")
 public class Commande {
 
     @Id
@@ -19,17 +19,17 @@ public class Commande {
     private int total;
 
     @Column(name="date")
-    private Date date;
+    private String date;
 
     public Commande() {}
 
-    public Commande(int idClient, int total, Date date) {
+    public Commande(int idClient, int total, String date) {
         this.idClient = idClient;
         this.total = total;
         this.date = date;
     }
 
-    public Commande(int id, int idClient, int total, Date date) {
+    public Commande(int id, int idClient, int total, String date) {
         this(idClient, total, date);
         this.id = id;
     }
@@ -58,11 +58,11 @@ public class Commande {
         this.total = total;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

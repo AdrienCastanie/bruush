@@ -161,7 +161,7 @@ public class DAOBruushMariaDB implements DAOBruush {
 	}
 
 	@Override
-	public Commande createCommande(int idClient, int total, Date date) throws CommandeCreationException {
+	public Commande createCommande(int idClient, int total, String date) throws CommandeCreationException {
 		return null;
 	}
 

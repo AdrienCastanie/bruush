@@ -34,7 +34,7 @@ public interface DAOBruush {
 
     public abstract List<Article> getArticles();
 
-    public abstract Commande createCommande(int idClient, int total, Date date) throws CommandeCreationException;
+    public abstract Commande createCommande(int idClient, int total, String date) throws CommandeCreationException;
 
     public abstract Achat createAchat(int idCommande, int idArticle, int qte) throws CommandeCreationException;
 

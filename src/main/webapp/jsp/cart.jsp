@@ -8,6 +8,7 @@
     <script>
         window.addEventListener('load', () => {
             const totalPriceElem = document.getElementById('total-price');
+            const totalPriceElemFacture = document.getElementById('facture-total-price');
             const panier = JSON.parse(localStorage.getItem("panier")) || {};
             let price = 0;
             [].slice.call(document.getElementsByClassName('cart-article-container')).map(elem => {
@@ -23,6 +24,7 @@
                         if (Number.parseInt(qte.innerText) > 1) {
                             qte.innerText = Number.parseInt(qte.innerText) - 1;
                             totalPriceElem.innerText = Number.parseInt(totalPriceElem.innerText) - articlePrice;
+                            totalPriceElemFacture.innerText = totalPriceElem.innerText;
                             panier[elem.id] = Number.parseInt(qte.innerText)
                             localStorage.setItem("panier", JSON.stringify(panier))
                         }
@@ -30,25 +32,39 @@
                     elem.getElementsByClassName('button-stock plus')[0].addEventListener('click', () => {
                         qte.innerText = Number.parseInt(qte.innerText) + 1;
                         totalPriceElem.innerText = Number.parseInt(totalPriceElem.innerText) + articlePrice;
+                        totalPriceElemFacture.innerText = totalPriceElem.innerText;
                         panier[elem.id] = Number.parseInt(qte.innerText)
                         localStorage.setItem("panier", JSON.stringify(panier))
                     });
                 }
-            })
+            });
             document.getElementsByClassName('main-container')[0].style.visibility = "visible"
-            document.getElementById('button-buy').addEventListener('click', () => {
+            document.getElementById('button-buy').addEventListener('click', async () => {
                 const data = new URLSearchParams();
                 for (let item in panier) {
                     data.append('panier', item + '-' + panier[item]);
-                    data.append('total', totalPriceElem.innerText)
                 }
-                fetch(window.location.origin + "/bruush/action?id=buy", {
+                data.append('total', totalPriceElem.innerText)
+                const response = await fetch(window.location.origin + "/bruush/action?id=buy", {
                     method: 'POST',
                     body: data
+                });
+                [].slice.call(document.getElementsByClassName('facture-element')).map(elem => {
+                    const id = elem.getAttribute('data-id');
+                    if (!(id in panier)) {
+                        elem.remove()
+                    } else {
+                        elem.getElementsByClassName('facture-article-qte')[0].innerText = panier[id];
+                    }
+                });
+                localStorage.setItem("panier", JSON.stringify({}));
+                document.getElementById("modal-facture").style.display = "block";
+                document.getElementById('facture-submit').addEventListener('click', () => {
+                    window.location.href = window.location.origin + "/bruush";
                 })
-                window.location.href = window.location.origin + "/bruush"
             })
             totalPriceElem.innerText = price;
+            totalPriceElemFacture.innerText = price;
         })
     </script>
 </head>
@@ -80,6 +96,20 @@
                 <label class="total-label">Total : <span id="total-price">0</span>€</label>
                 <button class="stripe" id="button-buy">Acheter</button>
             </div>
+        </div>
+    </div>
+    <div id="modal-facture" class="modal">
+        <div class="modal-content">
+            <h1>Facture</h1>
+            <c:forEach items="${articles}" var="article">
+                <div class="facture-element" data-id="${article.id}">
+                    <span class="facture-article-title">${article.nom}</span>
+                    <span class="facture-article-price">${article.prix}€</span>
+                    <span class="facture-article-qte">1</span>
+                </div>
+            </c:forEach>
+            <div class="total-label">Total : <span id="facture-total-price">0</span>€</div>
+            <button id="facture-submit">OK</button>
         </div>
     </div>
 </div>

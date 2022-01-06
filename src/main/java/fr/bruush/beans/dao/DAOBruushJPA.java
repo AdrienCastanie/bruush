@@ -180,7 +180,7 @@ public class DAOBruushJPA implements DAOBruush {
 	}
 
 	@Override
-	public Commande createCommande(int idClient, int total, Date date) throws CommandeCreationException {
+	public Commande createCommande(int idClient, int total, String date) throws CommandeCreationException {
 		EntityManager entityManager = emf.createEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();
 		try {

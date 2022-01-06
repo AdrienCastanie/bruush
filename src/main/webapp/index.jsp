@@ -42,7 +42,8 @@
             elem.style.visibility = "visible"
             elem.addEventListener('click', (event) => {
                 const obj = JSON.parse(localStorage.getItem('panier')) || {};
-                obj[elem.id] = event.target.parentElement.querySelector('.qty-article-selected').textContent || "1";
+                obj[elem.id] = Number.parseInt(event.target.parentElement.querySelector('.qty-article-selected')
+                    .textContent) || 1;
                 localStorage.setItem('panier', JSON.stringify(obj));
             })
         })

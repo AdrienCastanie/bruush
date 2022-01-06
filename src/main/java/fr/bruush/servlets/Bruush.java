@@ -168,9 +168,10 @@ public class Bruush extends HttpServlet {
 			case "buy":
 				String[] panier = request.getParameterValues("panier");
 				int total = Integer.parseInt(request.getParameter("total"));
+				session = request.getSession();
 				try {
 					Commande commande = this.daoBruush.createCommande(
-							Integer.parseInt((String)session.getAttribute("id")), total, new Date());
+							(int) session.getAttribute("id"), total, new Date().toString());
 					for (int i = 0; i < panier.length; i++) {
 						String[] values = panier[i].split("-");
 						this.daoBruush.createAchat(commande.getId(),
