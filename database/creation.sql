@@ -35,7 +35,7 @@ CREATE TABLE ACHAT (
 );
 
 CREATE TABLE ARTICLE (
- id_article  integer NOT NULL ,
+ id_article  integer NOT NULL AUTO_INCREMENT,
  nom         varchar(100) NOT NULL ,
  prix        integer NOT NULL ,
  stock       integer NOT NULL ,
