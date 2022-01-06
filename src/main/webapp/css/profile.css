@@ -63,6 +63,19 @@ td input {
     max-width: 50px;
 }
 
+
+.form-label {
+    margin-bottom: 5px;
+}
+
+.form-submit-button {
+    width: 100px;
+    color: white;
+    background-color: #0077ff;
+    font-size: 20px;
+    padding: 3px;
+}
+
 .stripe:hover {
     border: 2px solid #0077ff;
     background: #0077ff;
