@@ -19,22 +19,6 @@ public class DAOBruushMariaDB implements DAOBruush {
     }
 
     @Override
-    public void add(String nom, String prenom, String mail, String addr, int bloque) {
-        try (Connection connexion = daoFactory.getConnection()) {
-            PreparedStatement preparedStatement = connexion.prepareStatement(
-                    "INSERT INTO CLIENT(nom, prenom, mail, addr, bloque) VALUES(?, ?, ?, ?, ?);");
-            preparedStatement.setString(1, nom);
-            preparedStatement.setString(2, prenom);
-            preparedStatement.setString(3, mail);
-            preparedStatement.setString(4, addr);
-            preparedStatement.setInt(5, bloque);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public Client getClient(int id) {
         Client client = null;
         try (Connection connexion = daoFactory.getConnection()) {

@@ -5,7 +5,7 @@
     <div class="header-user-container">
         <c:if test="${ !empty sessionScope.id }">
             <div class="my-account-dropdown">
-                <a href="/bruush/jsp/profile-user-informations.jsp"
+                <a href="/bruush/action?id=personal-info"
                    class="header-clickable-connection header-clickable-item dropbtn">
                     <label class="user-name-label">${ sessionScope.prenom } ${ sessionScope.nom }</label>
                     <img src="/bruush/img/avatar.png">
