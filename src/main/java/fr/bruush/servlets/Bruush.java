@@ -2,6 +2,7 @@ package fr.bruush.servlets;
 
 import fr.bruush.beans.dao.DAOBruush;
 import fr.bruush.beans.dao.DAOFactory;
+import fr.bruush.beans.objects.Achat;
 import fr.bruush.beans.objects.Article;
 import fr.bruush.beans.objects.Client;
 import fr.bruush.beans.objects.Commande;
@@ -17,7 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 @WebServlet("/action")
@@ -186,12 +189,35 @@ public class Bruush extends HttpServlet {
                     System.out.println(e);
                 }
                 break;
+            case "history":
+                session = request.getSession();
+                HashMap historiqueArticle = new HashMap<Commande, List<Article>>();
+                HashMap historiqueAchat = new HashMap<Commande, List<Achat>>();
+                try {
+                    List<Commande> commandes = this.daoBruush.getCommandesByIdClient(
+                            (int) session.getAttribute("id"));
+                    for (Commande c : commandes) {
+                        List<Achat> achatsCommande = this.daoBruush.getAchatsByIdCommande(c.getId());
+                        List<Article> articlesCommande = new ArrayList<>();
+                        for (Achat a : achatsCommande) {
+                            articlesCommande.add(this.daoBruush.getArticle(a.getIdArticle()));
+                        }
+                        historiqueAchat.put(c, achatsCommande);
+                        historiqueArticle.put(c, articlesCommande);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                request.setAttribute("historiqueArticle", historiqueArticle);
+                request.setAttribute("historiqueAchat", historiqueAchat);
+                request.getRequestDispatcher("/jsp/profile-command-history.jsp").forward(request, response);
+                break;
             case "index":
             default:
                 request.setAttribute("articles", articles);
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
                 break;
         }
-        daoFactory.getEmf().close();
+        // daoFactory.getEmf().close();
     }
 }

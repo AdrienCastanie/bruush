@@ -9,36 +9,42 @@ import fr.bruush.exceptions.ClientNotFoundException;
 import fr.bruush.exceptions.ClientUpdateException;
 import fr.bruush.exceptions.CommandeCreationException;
 
-import java.util.Date;
 import java.util.List;
 
 public interface DAOBruush {
-	
-    public abstract void add(String nom, String prenom, String mail, String addr, int bloque);
-	
-    public abstract Client getClient(int id);
-	
-    public abstract List<Client> getClients();
 
-    public void update(int id, String nom, String prenom, String mail, String addr, int bloque);
+    void add(String nom, String prenom, String mail, String addr, int bloque);
 
-    public void updateInfos(int id, String nom, String prenom, String addr) throws ClientUpdateException;
+    Client getClient(int id);
 
-    public void updateClientBlocked(int id, int bloque);
+    List<Client> getClients();
 
-    public abstract void delete(int id);
+    void update(int id, String nom, String prenom, String mail, String addr, int bloque);
 
-    public abstract void deleteArticle(int idArticle);
+    void updateInfos(int id, String nom, String prenom, String addr) throws ClientUpdateException;
 
-    public abstract Client getClientByMailAndMdp(String mail, String mdp) throws ClientNotFoundException;
+    void updateClientBlocked(int id, int bloque);
 
-    public abstract Client createClient(String nom, String prenom, String mail, String mdp) throws ClientCreationException;
+    void delete(int id);
 
-    public abstract List<Article> getArticles();
+    void deleteArticle(int idArticle);
 
-    public abstract Commande createCommande(int idClient, int total, String date) throws CommandeCreationException;
+    Client getClientByMailAndMdp(String mail, String mdp) throws ClientNotFoundException;
 
-    public abstract Achat createAchat(int idCommande, int idArticle, int qte) throws CommandeCreationException;
+    Client createClient(String nom, String prenom, String mail, String mdp) throws
+            ClientCreationException;
 
-    public abstract void changeQteArticle(int idArticle, int newQte);
+    List<Article> getArticles();
+
+    Commande createCommande(int idClient, int total, String date) throws CommandeCreationException;
+
+    Achat createAchat(int idCommande, int idArticle, int qte) throws CommandeCreationException;
+
+    void changeQteArticle(int idArticle, int newQte);
+
+    List<Commande> getCommandesByIdClient(int idClient) throws Exception;
+
+    List<Achat> getAchatsByIdCommande(int idCommande) throws Exception;
+
+    Article getArticle(int id);
 }
