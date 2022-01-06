@@ -30,22 +30,51 @@ public class Bruush extends HttpServlet {
     private DAOFactory daoFactory;
     private DAOBruush daoBruush;
 
+    /**
+     * Init the servlet
+     *
+     * @throws ServletException
+     */
     public void init() throws ServletException {
         this.daoFactory = DAOFactory.getInstance();
     }
 
+    /**
+     * Called when there is a HTTP GET
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
             ServletException,
             IOException {
         processRequest(request, response);
     }
 
+    /**
+     * Called when there is a HTTP POST
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws
             ServletException,
             IOException {
         processRequest(request, response);
     }
 
+    /**
+     * Request handler for both GET & POST
+     *
+     * @param request
+     * @param response
+     * @throws ServletException
+     * @throws IOException
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws
             ServletException,
             IOException {
@@ -218,6 +247,5 @@ public class Bruush extends HttpServlet {
                 request.getRequestDispatcher("/index.jsp").forward(request, response);
                 break;
         }
-        // daoFactory.getEmf().close();
     }
 }

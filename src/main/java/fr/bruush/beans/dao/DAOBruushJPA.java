@@ -26,20 +26,6 @@ public class DAOBruushJPA implements DAOBruush {
     }
 
     @Override
-    public void add(String nom, String prenom, String mail, String addr, int bloque) {
-        EntityManager entityManager = emf.createEntityManager();
-        entityManager.getTransaction().begin();
-        try {
-            entityManager.persist(new Client(nom, prenom, mail, addr, bloque));
-            entityManager.getTransaction().commit();
-            entityManager.close();
-        } catch (Exception e) {
-            entityManager.close();
-            e.printStackTrace();
-        }
-    }
-
-    @Override
     public Client getClient(int id) {
         EntityManager entityManager = emf.createEntityManager();
         entityManager.getTransaction().begin();
