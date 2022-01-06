@@ -1,14 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <header>
-    <h1>BRUUSH</h1>
+    <a href="/bruush/"><h1>BRUUSH</h1></a>
     <div class="header-user-container">
         <c:if test="${ !empty sessionScope.id }">
             <div class="my-account-dropdown">
                 <a href="/bruush/action?id=personal-info"
                    class="header-clickable-connection header-clickable-item dropbtn">
                     <label class="user-name-label">${ sessionScope.prenom } ${ sessionScope.nom }</label>
-                    <img src="/bruush/img/avatar.png">
+                    <img src="img/avatar.png">
                 </a>
                 <div class="dropdown-content">
                     <a href="/bruush/action?id=disconnection">Déconnexion</a>
