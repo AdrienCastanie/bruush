@@ -22,14 +22,16 @@
             </a>
         </c:if>
 
-        <div id="btnCart">
-            <div class="header-clickable-item">
-                <img src="/bruush/img/panier.png">
+        <c:if test="${ (not empty sessionScope.bloque && sessionScope.bloque == 1) || not empty sessionScope.id }">
+            <div id="btnCart">
+                <div class="header-clickable-item">
+                    <img src="/bruush/img/panier.png">
+                </div>
+                <form action="/bruush/action?id=cart" method="POST">
+                    <input type="hidden" class="cart" name="cart">
+                </form>
             </div>
-            <form action="/bruush/action?id=cart" method="POST">
-                <input type="hidden" class="cart" name="cart">
-            </form>
-        </div>
+        </c:if>
         <script>
             const btnCart = document.querySelector("#btnCart");
             btnCart.addEventListener('click', event => {

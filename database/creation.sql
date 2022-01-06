@@ -20,7 +20,7 @@ CREATE TABLE COMMANDE (
  id_commande integer NOT NULL AUTO_INCREMENT ,
  id_client   integer NOT NULL ,
  total       integer NOT NULL ,
- date        date NOT NULL ,
+ date        varchar(50) NOT NULL ,
  PRIMARY KEY (id_commande),
  FOREIGN KEY (id_client) REFERENCES CLIENT(id_client)
 );

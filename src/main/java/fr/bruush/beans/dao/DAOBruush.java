@@ -1,11 +1,15 @@
 package fr.bruush.beans.dao;
 
+import fr.bruush.beans.objects.Achat;
 import fr.bruush.beans.objects.Article;
 import fr.bruush.beans.objects.Client;
+import fr.bruush.beans.objects.Commande;
 import fr.bruush.exceptions.ClientCreationException;
 import fr.bruush.exceptions.ClientNotFoundException;
 import fr.bruush.exceptions.ClientUpdateException;
+import fr.bruush.exceptions.CommandeCreationException;
 
+import java.util.Date;
 import java.util.List;
 
 public interface DAOBruush {
@@ -31,6 +35,10 @@ public interface DAOBruush {
     public abstract Client createClient(String nom, String prenom, String mail, String mdp) throws ClientCreationException;
 
     public abstract List<Article> getArticles();
+
+    public abstract Commande createCommande(int idClient, int total, String date) throws CommandeCreationException;
+
+    public abstract Achat createAchat(int idCommande, int idArticle, int qte) throws CommandeCreationException;
 
     public abstract void changeQteArticle(int idArticle, int newQte);
 }

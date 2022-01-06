@@ -23,12 +23,14 @@
                     <label class="article-price">${article.prix}€</label>
                     <label id="stock" class="article-stock">Stock : ${article.stock}</label>
                 </div>
-                <div class="qty-article-container">
-                    <input type="button" value="-" class="button-stock" onclick="decrementValue()">
-                    <div id="qty-article" class="qty-article-selected">1</div>
-                    <input type="button" value="+" class="button-stock"  onclick="incrementValue()">
-                </div>
-                <button id="${article.id}" class="stripe btnAcheter" style="visibility: hidden">Acheter</button>
+                <c:if test="${ not empty sessionScope.id }">
+                    <div class="qty-article-container">
+                        <input type="button" value="-" class="button-stock" onclick="decrementValue()">
+                        <div id="qty-article" class="qty-article-selected">1</div>
+                        <input type="button" value="+" class="button-stock"  onclick="incrementValue()">
+                    </div>
+                    <button id="${article.id}" class="stripe btnAcheter" style="visibility: hidden">Acheter</button>
+                </c:if>
             </div>
         </div>
     </c:forEach>
@@ -40,7 +42,8 @@
             elem.style.visibility = "visible"
             elem.addEventListener('click', (event) => {
                 const obj = JSON.parse(localStorage.getItem('panier')) || {};
-                obj[elem.id] = event.target.parentElement.querySelector('.qty-article-selected').textContent || "1";
+                obj[elem.id] = Number.parseInt(event.target.parentElement.querySelector('.qty-article-selected')
+                    .textContent) || 1;
                 localStorage.setItem('panier', JSON.stringify(obj));
             })
         })
