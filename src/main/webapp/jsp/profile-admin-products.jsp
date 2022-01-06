@@ -18,6 +18,38 @@
 <jsp:include page="profile-nav-bar.jsp"/>
 <div class="profile-container">
     <h3>Gestion des produits</h3>
+    <div class="add-article-container">
+        <form action="/bruush/action?id=admin_products" method="post" class="form-example">
+            <p class="form-label">Nom :</p>
+            <div class="form-input-wrapper">
+                <input class="form-input" type="text" name="nom" placeholder="nom" required>
+            </div>
+
+            <p class="form-label">Description</p>
+            <div class="form-input-wrapper">
+                <input class="form-input" type="text" name="description" placeholder="Description" required>
+            </div>
+
+            <p class="form-label">Image</p>
+            <div class="form-input-wrapper">
+                <input class="form-input" type="url" name="image" placeholder="url de l'image" required>
+            </div>
+
+            <p class="form-label">Prix</p>
+            <div class="form-input-wrapper">
+                <input class="form-input" type="number" name="prix" placeholder="10" required>
+            </div>
+
+            <p class="form-label">Stock</p>
+            <div class="form-input-wrapper">
+                <input class="form-input" type="number" name="stock" placeholder="100" required>
+            </div>
+
+            <div style="text-align: center;">
+                <input class="form-submit-button" type="submit" value="Ajouter">
+            </div>
+        </form>
+    </div>
     <div>
         <table class="fl-table">
             <thead>

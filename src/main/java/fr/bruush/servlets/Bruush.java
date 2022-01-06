@@ -190,12 +190,20 @@ public class Bruush extends HttpServlet {
             case "admin_products":
                 String idArticle = request.getParameter("id_article");
                 String newQte = request.getParameter("new_qte");
+                String nomArticle = request.getParameter("nom");
                 if (idArticle != null && newQte == null) //Cela signifie que l'on a cliqué pour supprimer un article
                 {
                     this.daoBruush.deleteArticle(Integer.parseInt(idArticle));
                 } else if (idArticle != null && newQte != null) //Cela signifie que l'on change la quantité d'un article en stock
                 {
                     this.daoBruush.changeQteArticle(Integer.parseInt(idArticle), Integer.parseInt(newQte));
+                } else if (nomArticle != null)
+                {
+                    String descriptionArticle = request.getParameter("description");
+                    String imageArticle = request.getParameter("image");
+                    String prixArticle = request.getParameter("prix");
+                    String stockArticle = request.getParameter("stock");
+                    this.daoBruush.createArticle(nomArticle, descriptionArticle, imageArticle, Integer.parseInt(prixArticle), Integer.parseInt(stockArticle));
                 }
                 List<Article> listArticles = this.daoBruush.getArticles();
                 request.setAttribute("articles", listArticles);

@@ -151,6 +151,10 @@ public class DAOBruushMariaDB implements DAOBruush {
         }
         return articles;
     }
+    @Override
+    public Article createArticle(String nomArticle,String description, String imageArticle, int prixArticle, int stockArticle) {
+        return null;
+    }
 
     @Override
     public Commande createCommande(int idClient, int total, String date) throws CommandeCreationException {

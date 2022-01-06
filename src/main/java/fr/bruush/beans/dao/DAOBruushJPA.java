@@ -209,6 +209,26 @@ public class DAOBruushJPA implements DAOBruush {
             throw new CommandeCreationException(e.getMessage());
         }
     }
+    @Transactional
+    @Override
+    public Article createArticle(String nomArticle, String description, String imageArticle, int prixArticle, int stockArticle) {
+        EntityManager entityManager = emf.createEntityManager();
+        EntityTransaction transaction = entityManager.getTransaction();
+        try {
+            Article a = new Article(nomArticle, prixArticle, stockArticle, description, imageArticle);
+            transaction.begin();
+            entityManager.persist(a);
+            transaction.commit();
+            System.out.println("QUENTIN " + a.toString());
+            return a;
+        } catch (Exception e) {
+            e.printStackTrace();
+            transaction.rollback();
+        } finally {
+            entityManager.close();
+        }
+        return null;
+    }
 
     @Override
     public Achat createAchat(int idCommande, int idArticle, int qte) throws CommandeCreationException {

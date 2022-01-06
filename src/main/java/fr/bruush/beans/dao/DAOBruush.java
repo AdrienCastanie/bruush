@@ -74,6 +74,17 @@ public interface DAOBruush {
     void deleteArticle(int idArticle);
 
     /**
+     * Create an article
+     * @param nomArticle - Nom of the article
+     * @param description - Description
+     * @param imageArticle - Image URL
+     * @param prixArticle - Prix of the article
+     * @param stockArticle - His stock
+     * @return an article
+     */
+    Article createArticle(String nomArticle,String description, String imageArticle, int prixArticle, int stockArticle);
+
+    /**
      * Get a client by mail and mdp
      *
      * @param mail - The mail
