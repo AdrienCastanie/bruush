@@ -26,6 +26,8 @@ window.addEventListener('load', () => {
             obj[elem.id] = Number.parseInt(event.target.parentElement.querySelector('.qty-article-selected')
                 .textContent) || 1;
             localStorage.setItem('panier', JSON.stringify(obj));
+            // alertify.alert('Panier', 'Vous avez ajouté cet article au panier !');
+            alertify.notify('Vous avez ajouté cet article au panier !', 'success', 5);
         })
     })
 });

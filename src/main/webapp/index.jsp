@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/index.css">
     <script type="text/javascript" src="js/index.js"></script>
+    <!-- ALERTIFY -->
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
 </head>
 <body>
 <jsp:include page="jsp/header.jsp"/>
