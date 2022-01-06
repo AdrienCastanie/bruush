@@ -121,13 +121,25 @@ public class DAOBruushMariaDB implements DAOBruush {
 	public void delete(int id) {
 		try (Connection connexion = daoFactory.getConnection()){
 			PreparedStatement preparedStatement = connexion.prepareStatement(
-				"DELETE FROM books WHERE id=?;");
+				"DELETE FROM CLIENT WHERE id=?;");
 			preparedStatement.setInt(1, id);
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}		
 	}
+
+    @Override
+    public void deleteArticle(int idArticle) {
+        try (Connection connexion = daoFactory.getConnection()){
+            PreparedStatement preparedStatement = connexion.prepareStatement(
+                    "DELETE FROM ARTICLE WHERE id=?;");
+            preparedStatement.setInt(1, idArticle);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
 	@Override
 	public Client getClientByMailAndMdp(String mail, String mdp) {
@@ -169,4 +181,17 @@ public class DAOBruushMariaDB implements DAOBruush {
 	public Achat createAchat(int idCommande, int idArticle, int qte) throws CommandeCreationException {
 		return null;
 	}
+	
+    @Override
+    public void changeQteArticle(int id, int newQte) {
+        try (Connection connexion = daoFactory.getConnection()){
+            PreparedStatement preparedStatement = connexion.prepareStatement(
+                    "UPDATE ARTICLE SET stock=? WHERE id=?;");
+            preparedStatement.setInt(1, newQte);
+            preparedStatement.setInt(2, id);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

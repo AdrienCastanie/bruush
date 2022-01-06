@@ -28,6 +28,8 @@ public interface DAOBruush {
 
     public abstract void delete(int id);
 
+    public abstract void deleteArticle(int idArticle);
+
     public abstract Client getClientByMailAndMdp(String mail, String mdp) throws ClientNotFoundException;
 
     public abstract Client createClient(String nom, String prenom, String mail, String mdp) throws ClientCreationException;
@@ -38,4 +40,5 @@ public interface DAOBruush {
 
     public abstract Achat createAchat(int idCommande, int idArticle, int qte) throws CommandeCreationException;
 
+    public abstract void changeQteArticle(int idArticle, int newQte);
 }

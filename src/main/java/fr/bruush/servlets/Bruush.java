@@ -23,22 +23,27 @@ import fr.bruush.exceptions.ClientUpdateException;
 import fr.bruush.exceptions.CommandeCreationException;
 
 @WebServlet("/action")
-public class Bruush extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+public class Bruush extends HttpServlet
+{
+    private static final long serialVersionUID = 1L;
 
-	private DAOFactory daoFactory;
-	private DAOBruush daoBruush;
+    private DAOFactory daoFactory;
+    private DAOBruush daoBruush;
 
-	public void init() throws ServletException {
-		this.daoFactory = DAOFactory.getInstance();
+    public void init() throws ServletException
+    {
+        this.daoFactory = DAOFactory.getInstance();
     }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request,response);
-	}
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		processRequest(request,response);
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        processRequest(request, response);
+    }
+
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+    {
+        processRequest(request, response);
+    }
 
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		daoBruush = daoFactory.getDAOClient("JPA");
@@ -107,13 +112,12 @@ public class Bruush extends HttpServlet {
 				session.setAttribute("bloque", client.getBloque());
 				request.getRequestDispatcher("/action?id=index").forward(request,response);
 
-				break;
-			case "disconnection":
+                break;
+            case "disconnection":
                 session = request.getSession();
-                if(session != null)
+                if (session != null)
                     session.invalidate();
-				request.getRequestDispatcher("/action?id=index").forward(request,response);
-
+                request.getRequestDispatcher("/action?id=index").forward(request, response);
 				break;
 			case "personal-info":
 				String idClient = request.getParameter("idClient");
@@ -136,20 +140,6 @@ public class Bruush extends HttpServlet {
 				session.setAttribute("adresse", adresse);
 				request.getRequestDispatcher("/jsp/profile-user-informations.jsp").forward(request,response);
 				break;
-			case "add":
-//				String bookAdded = request.getParameter("bookadded");
-//				if(bookAdded != null) {
-//					if(bookAdded.equals("true")) {
-//			        	String title = request.getParameter("title");
-//			        	String author = request.getParameter("author");
-//			        	String description = request.getParameter("description");
-//						daoBook.add(title, author, description);
-//					}
-//					else {
-//						request.getRequestDispatcher("bibliotheque?id=display").forward(request,response);
-//					}
-//				}
-//				request.setAttribute("content", "add");
 			case "cart":
 				request.setAttribute("articles", articles);
 				request.getRequestDispatcher("/jsp/cart.jsp").forward(request,response);
@@ -165,6 +155,20 @@ public class Bruush extends HttpServlet {
 				request.setAttribute("clients", listClients);
 				request.getRequestDispatcher("/jsp/profile-admin-users.jsp").forward(request, response);
 				break;
+            case "admin_products":
+                String idArticle = request.getParameter("id_article");
+                String newQte = request.getParameter("new_qte");
+                if (idArticle != null && newQte == null) //Cela signifie que l'on a cliqué pour supprimer un article
+                {
+                    this.daoBruush.deleteArticle(Integer.parseInt(idArticle));
+                }else if(idArticle != null && newQte != null) //Cela signifie que l'on change la quantité d'un article en stock
+                {
+                    this.daoBruush.changeQteArticle(Integer.parseInt(idArticle), Integer.parseInt(newQte));
+                }
+                List<Article> listArticles = this.daoBruush.getArticles();
+                request.setAttribute("articles", listArticles);
+                request.getRequestDispatcher("/jsp/profile-admin-products.jsp").forward(request, response);
+                break;
 			case "buy":
 				String[] panier = request.getParameterValues("panier");
 				int total = Integer.parseInt(request.getParameter("total"));
@@ -181,21 +185,6 @@ public class Bruush extends HttpServlet {
 				} catch (CommandeCreationException e) {
 					System.out.println(e);
 				}
-				break;
-			case "delete":
-//				daoBook.delete(Integer.parseInt(request.getParameter("code")));
-//				request.getRequestDispatcher("bibliotheque?id=display").forward(request,response);
-				break;
-			case "update":
-//				String bookUpdated = request.getParameter("bookupdated");
-//				if(bookUpdated != null && bookUpdated.equals("true")) {
-//					code = request.getParameter("code");
-//		        	String title = request.getParameter("title");
-//		        	String author = request.getParameter("author");
-//		        	String description = request.getParameter("description");
-//		        	daoBook.update(code, title, author, description);
-//				}
-//				request.getRequestDispatcher("bibliotheque?id=display").forward(request,response);
 				break;
 			case "index":
 			default:

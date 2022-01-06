@@ -46,6 +46,23 @@ input:focus {
     width: 10vw;
 }
 
+#btn-delete-articles, #save-new-qte-articles {
+    text-decoration: none;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px;
+    cursor: pointer;
+}
+
+#save-new-qte-articles {
+    background-color: #0077ff;
+}
+
+td input {
+    max-width: 50px;
+}
+
 .stripe:hover {
     border: 2px solid #0077ff;
     background: #0077ff;

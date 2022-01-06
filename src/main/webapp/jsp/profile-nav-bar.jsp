@@ -22,7 +22,7 @@
     </a>
     <a id="menu-item-admin-product"
        class="menu-item"
-       href="/bruush/jsp/profile-admin-products.jsp">
+       href="/bruush/action?id=admin_products">
         <h2>Produits</h2>
     </a>
 </div>
